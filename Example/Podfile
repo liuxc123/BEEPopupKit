@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'BEEPopupKit_Example' do
+  pod 'BEEPopupKit', :path => '../'
+
+  target 'BEEPopupKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
