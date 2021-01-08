@@ -9,8 +9,20 @@ import Foundation
 
 struct CachedEntry {
     let view: BEEEntryView
-    let presentInsideKeyWindow: Bool
-    let rollbackWindow: BEEPopupKit.RollbackWindow
+    var presentInsideKeyWindow: Bool = false
+    var rollbackWindow: BEEPopupKit.RollbackWindow!
+    var presentView: UIView?
+    
+    init(view: BEEEntryView, presentInsideKeyWindow: Bool = false, rollbackWindow: BEEPopupKit.RollbackWindow) {
+        self.view = view
+        self.presentInsideKeyWindow = presentInsideKeyWindow
+        self.rollbackWindow = rollbackWindow
+    }
+    
+    init(view: BEEEntryView, presentView: UIView) {
+        self.view = view
+        self.presentView = presentView
+    }
 }
 
 protocol EntryCachingHeuristic: class {

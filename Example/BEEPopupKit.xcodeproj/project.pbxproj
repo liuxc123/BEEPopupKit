@@ -15,6 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		791822283207ADBED8DFA2E5 /* Pods_BEEPopupKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FD1A100249430B2F4C6C99 /* Pods_BEEPopupKit_Example.framework */; };
 		AAD58A65E6FF33F9083BF2E8 /* Pods_BEEPopupKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD3F51229B0D35E7ED3A628 /* Pods_BEEPopupKit_Tests.framework */; };
+		F1A0B6DA25A87681000B4A23 /* BEEAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		1264B979450B13E05EACA3A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		44A356394070482280BAA52D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4B706E6D7D040EB1689F7402 /* Pods-BEEPopupKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		59FD1A100249430B2F4C6C99 /* Pods_BEEPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* BEEPopupKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BEEPopupKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +46,7 @@
 		CFA7BD2F25AD13FCB06063E9 /* Pods-BEEPopupKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Tests/Pods-BEEPopupKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53B52D674C264F26EB7F0F5 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BEEPopupKit.podspec; path = ../BEEPopupKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ECD3F51229B0D35E7ED3A628 /* Pods_BEEPopupKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEEAnimations.swift; sourceTree = "<group>"; };
 		FD38EB4B31117796B9F8515B /* Pods-BEEPopupKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +116,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -154,7 +156,6 @@
 			children = (
 				E53B52D674C264F26EB7F0F5 /* BEEPopupKit.podspec */,
 				1264B979450B13E05EACA3A5 /* README.md */,
-				44A356394070482280BAA52D /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -335,6 +336,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				F1A0B6DA25A87681000B4A23 /* BEEAnimations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,7 +488,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -501,7 +503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

@@ -20,11 +20,6 @@
   "swift_versions": "5.0",
   "requires_arc": true,
   "source_files": "BEEPopupKit/Classes/**/*",
-  "resource_bundles": {
-    "BEEPopupKit": [
-      "BEEPopupKit/Assets/*.png"
-    ]
-  },
   "frameworks": "UIKit",
   "dependencies": {
     "QuickLayout": [

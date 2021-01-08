@@ -21,9 +21,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        showAlertView()
-        showActionSheetView()
+    @IBAction func clickAction(_ sender: Any) {
+//        showAlertView()
+//        showActionSheetView()
+//        showCustomView()
+        showToastView()
     }
 
     func showAlertView() {
@@ -71,6 +73,26 @@ class ViewController: UIViewController {
         }))
         alert.show()
     }
-
+    
+    func showCustomView() {
+        let contentView = UIView()
+        contentView.backgroundColor = .red
+        contentView.set(.width, of: 300)
+        contentView.set(.height, of: 300)
+        
+        var attributes = BEEAttributes.centerFloat
+        attributes.displayDuration = .infinity
+        attributes.precedence = .enqueue(priority: .high)
+        attributes.entranceAnimation = BEEAnimations.bounceIn()
+        attributes.exitAnimation = BEEAnimations.bounceOut()
+        attributes.popBehavior = .overridden
+        attributes.entryInteraction = .absorbTouches
+        
+        BEEPopupKit.display(entry: contentView, using: attributes)
+    }
+    
+    func showToastView() {
+        BEEToast.show("adsasdasdaaaadada\nasdad\na", view: view)
+    }
 }
 

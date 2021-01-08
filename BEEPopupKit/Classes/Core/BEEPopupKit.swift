@@ -180,10 +180,15 @@ public final class BEEPopupKit {
         }
     }
 
-    public class func dismiss(_ view: UIView, with completion: DismissCompletionHandler? = nil) {
+    public class func dismiss(presentView view: UIView, with completion: DismissCompletionHandler? = nil) {
         DispatchQueue.main.async {
             BEEViewProvider.dismiss(presentView: view, with: completion)
         }
     }
     
+    public class func transform(to view: UIView, presentView: UIView) {
+        DispatchQueue.main.async {
+            BEEViewProvider.transform(to: view, presentView: presentView)
+        }
+    }
 }
