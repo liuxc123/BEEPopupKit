@@ -28,8 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1264B979450B13E05EACA3A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		44A356394070482280BAA52D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		1264B979450B13E05EACA3A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		44A356394070482280BAA52D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4B706E6D7D040EB1689F7402 /* Pods-BEEPopupKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		59FD1A100249430B2F4C6C99 /* Pods_BEEPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* BEEPopupKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BEEPopupKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,7 +44,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		67CA21696EDB7108632B0F9E /* Pods-BEEPopupKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Tests/Pods-BEEPopupKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		CFA7BD2F25AD13FCB06063E9 /* Pods-BEEPopupKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Tests/Pods-BEEPopupKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E53B52D674C264F26EB7F0F5 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = BEEPopupKit.podspec; path = ../BEEPopupKit.podspec; sourceTree = "<group>"; };
+		E53B52D674C264F26EB7F0F5 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BEEPopupKit.podspec; path = ../BEEPopupKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ECD3F51229B0D35E7ED3A628 /* Pods_BEEPopupKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD38EB4B31117796B9F8515B /* Pods-BEEPopupKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,7 +77,6 @@
 				CFA7BD2F25AD13FCB06063E9 /* Pods-BEEPopupKit_Tests.debug.xcconfig */,
 				67CA21696EDB7108632B0F9E /* Pods-BEEPopupKit_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -292,10 +292,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BEEPopupKit/BEEPopupKit.framework",
+				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEEPopupKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

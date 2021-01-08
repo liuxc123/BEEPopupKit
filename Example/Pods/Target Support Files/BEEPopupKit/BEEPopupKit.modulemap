@@ -1,0 +1,6 @@
+framework module BEEPopupKit {
+  umbrella header "BEEPopupKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

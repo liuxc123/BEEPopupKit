@@ -1,0 +1,6 @@
+framework module Pods_BEEPopupKit_Example {
+  umbrella header "Pods-BEEPopupKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

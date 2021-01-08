@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BEEPopupKit
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,57 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        showAlertView()
+        showActionSheetView()
+    }
+
+    func showAlertView() {
+        let alert = BEEAlertView(title: "title", message: "message")
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
+            print(action.title)
+        }))
+        alert.show()
+    }
+
+    func showActionSheetView() {
+        let alert = BEEActionSheetView(title: "title", message: "message")
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+        alert.addAction(action: BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
+            print(action.title)
+        }))
+        alert.show()
     }
 
 }

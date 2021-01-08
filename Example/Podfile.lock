@@ -1,0 +1,23 @@
+PODS:
+  - BEEPopupKit (1.0.0):
+    - QuickLayout
+  - QuickLayout (3.0.0)
+
+DEPENDENCIES:
+  - BEEPopupKit (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - QuickLayout
+
+EXTERNAL SOURCES:
+  BEEPopupKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BEEPopupKit: 92cd402f141cd45c6b614a518ae1434e57decfcb
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+
+PODFILE CHECKSUM: 0c7d6bbffa3696c0c68811321df50f8fcced6c95
+
+COCOAPODS: 1.9.1
