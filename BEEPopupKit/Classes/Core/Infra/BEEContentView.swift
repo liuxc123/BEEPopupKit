@@ -49,6 +49,7 @@ class BEEContentView: UIView {
     private var inKeyboardConstraint: NSLayoutConstraint!
 
     private var inOffset: CGFloat = 0
+    private var horizontalOffset: CGFloat = 0
     private var totalTranslation: CGFloat = 0
     private var verticalLimit: CGFloat = 0
     private let swipeMinVelocity: CGFloat = 60
@@ -132,7 +133,7 @@ class BEEContentView: UIView {
         }
 
         switch attributes.position {
-        case .top, .topRight:
+        case .top, .topLeft, .topRight:
             messageInAnchor = .top
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
             inOffset += attributes.positionConstraints.verticalOffset
@@ -144,11 +145,6 @@ class BEEContentView: UIView {
             spacerView?.layout(.top, to: .bottom, of: self)
         case .center, .centerLeft, .centerRight:
             messageInAnchor = .centerY
-        case .topLeft:
-            messageInAnchor = .left
-            inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
-            inOffset += attributes.positionConstraints.verticalOffset
-            spacerView?.layout(.right, to: .left, of: self)
         }
 
         // Layout the content view inside the scroll view

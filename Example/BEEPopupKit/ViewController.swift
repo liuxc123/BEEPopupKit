@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBAction func clickAction(_ sender: Any) {
 //        showAlertView()
 //        showActionSheetView()
-//        showCustomView()
+        showCustomView()
         showToastView()
     }
 
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         attributes.popBehavior = .overridden
         attributes.entryInteraction = .absorbTouches
         
-        BEEPopupKit.display(entry: contentView, using: attributes)
+        BEEPopupKit.display(entry: contentView, using: attributes, presentView: view)
     }
     
     func showToastView() {
