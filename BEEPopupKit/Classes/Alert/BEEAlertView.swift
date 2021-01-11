@@ -9,33 +9,33 @@ import UIKit
 
 public struct BEEAlertViewConfig {
 
-    static let globalConfig = BEEAlertViewConfig()
+    public static var shared = BEEAlertViewConfig()
 
-    var width: CGFloat = 275
-    var buttonHeight: CGFloat = 50
-    var cornerRadius: CGFloat = 5
+    public var width: CGFloat = 275
+    public var buttonHeight: CGFloat = 50
+    public var cornerRadius: CGFloat = 5
 
-    var titleFont: UIFont = .systemFont(ofSize: 18)
-    var messageFont: UIFont = .systemFont(ofSize: 14)
-    var buttonFont: UIFont = .systemFont(ofSize: 17)
+    public var titleFont: UIFont = .systemFont(ofSize: 18)
+    public var messageFont: UIFont = .systemFont(ofSize: 14)
+    public var buttonFont: UIFont = .systemFont(ofSize: 17)
 
-    var backgroundColor: UIColor = UIColor(hex6: 0xFFFFFF)
-    var titleColor: UIColor = UIColor(hex6: 0x333333)
-    var messageColor: UIColor = UIColor(hex6: 0x666666)
-    var separatorColor: UIColor = UIColor(hex6: 0xCCCCCC)
+    public var backgroundColor: UIColor = UIColor(hex6: 0xFFFFFF)
+    public var titleColor: UIColor = UIColor(hex6: 0x333333)
+    public var messageColor: UIColor = UIColor(hex6: 0x666666)
+    public var separatorColor: UIColor = UIColor(hex6: 0xCCCCCC)
 
-    var actionNormalColor: UIColor = UIColor(hex6: 0x333333)
-    var actionDisableColor: UIColor = UIColor(hex6: 0x999999)
-    var actionHighlightColor: UIColor = UIColor(hex6: 0xE76153)
-    var actionPressedColor: UIColor = UIColor(hex6: 0xEFEDE7)
+    public var actionNormalColor: UIColor = UIColor(hex6: 0x333333)
+    public var actionDisableColor: UIColor = UIColor(hex6: 0x999999)
+    public var actionHighlightColor: UIColor = UIColor(hex6: 0xE76153)
+    public var actionPressedColor: UIColor = UIColor(hex6: 0xEFEDE7)
 
-    var titleTextAlignment: NSTextAlignment = .center
-    var messageTextAlignment: NSTextAlignment = .center
-    var buttonTextAlignment: NSTextAlignment = .center
+    public var titleTextAlignment: NSTextAlignment = .center
+    public var messageTextAlignment: NSTextAlignment = .center
+    public var buttonTextAlignment: NSTextAlignment = .center
 
-    var imageSize: CGSize = CGSize(width: 50, height: 50)
+    public var imageSize: CGSize = CGSize(width: 50, height: 50)
 
-    var displayMode: BEEAttributes.DisplayMode = .inferred
+    public var displayMode: BEEAttributes.DisplayMode = .inferred
 
     private init() {}
 }
@@ -48,7 +48,7 @@ open class BEEAlertView {
     public var message: String!
     public var imageName: String!
 
-    public var config: BEEAlertViewConfig = BEEAlertViewConfig.globalConfig
+    public var config: BEEAlertViewConfig = BEEAlertViewConfig.shared
 
     public init(title: String, message: String, imageName: String = "") {
         self.title = title

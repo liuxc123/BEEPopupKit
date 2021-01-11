@@ -9,17 +9,17 @@ import UIKit
 
 public struct BEEToastConfig {
     
-    static let globalConfig = BEEToastConfig()
+    public static var shared = BEEToastConfig()
     
-    var textColor: UIColor = .white
-    var textFont: UIFont = .systemFont(ofSize: 16)
-    var textAlightment: NSTextAlignment = .left
-    var numberOfLines: Int = 0
+    public var textColor: UIColor = .white
+    public var textFont: UIFont = .systemFont(ofSize: 16)
+    public var textAlightment: NSTextAlignment = .left
+    public var numberOfLines: Int = 0
     
-    var defaultDuration: TimeInterval = 2.0
-    var verticalOffset: CGFloat = 80
+    public var defaultDuration: TimeInterval = 2.0
+    public var verticalOffset: CGFloat = 80
 
-    var displayMode: BEEAttributes.DisplayMode = .inferred
+    public var displayMode: BEEAttributes.DisplayMode = .inferred
 }
 
 public class BEEToast {
@@ -54,7 +54,7 @@ public class BEEToast {
     
     public static func show(_ text: String, view: UIView? = nil, duration: TimeInterval? = nil, verticalOffset: CGFloat? = nil) {
 
-        let config = BEEToastConfig.globalConfig
+        let config = BEEToastConfig.shared
         var attributes = BEEToast.toastAttribute
         attributes.displayMode = config.displayMode
         attributes.displayDuration = duration ?? config.defaultDuration

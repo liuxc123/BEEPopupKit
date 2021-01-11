@@ -8,6 +8,5 @@ target 'BEEPopupKit_Example' do
   target 'BEEPopupKit_Tests' do
     inherit! :search_paths
 
-    
   end
 end
