@@ -111,6 +111,12 @@ public final class BEEPopupKit {
         }
     }
 
+    public class func display(entry view: UIView, using attributes: BEEAttributes, presentView: UIView) {
+        DispatchQueue.main.async {
+            BEEViewProvider.display(view: view, using: attributes, presentView: presentView)
+        }
+    }
+
     /**
      Displays a given entry view controller using an attributes struct.
      - A thread-safe method - Can be invokes from any thread
@@ -123,6 +129,12 @@ public final class BEEPopupKit {
     public class func display(entry viewController: UIViewController, using attributes: BEEAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
         DispatchQueue.main.async {
             BEEWindowProvider.shared.display(viewController: viewController, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
+        }
+    }
+
+    public class func display(viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
+        DispatchQueue.main.async {
+            BEEViewProvider.display(viewController: viewController, using: attributes, presentView: presentView)
         }
     }
 
@@ -152,6 +164,18 @@ public final class BEEPopupKit {
         }
     }
 
+    public class func dismiss(presentView view: UIView, contentViewController: UIViewController, with completion: DismissCompletionHandler? = nil) {
+        DispatchQueue.main.async {
+            BEEViewProvider.dismiss(presentView: view, contentViewController: contentViewController, with: completion)
+        }
+    }
+
+    public class func dismiss(presentView view: UIView, contentView: UIView, with completion: DismissCompletionHandler? = nil) {
+        DispatchQueue.main.async {
+            BEEViewProvider.dismiss(presentView: view, contentView: contentView, with: completion)
+        }
+    }
+
     /**
      Layout the view hierarchy that is rooted in the window.
      - In case you use complex animations, you can call it to refresh the AutoLayout mechanism on the entire view hierarchy.
@@ -165,30 +189,6 @@ public final class BEEPopupKit {
             DispatchQueue.main.async {
                 BEEWindowProvider.shared.layoutIfNeeded()
             }
-        }
-    }
-
-    public class func display(viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
-        DispatchQueue.main.async {
-            BEEViewProvider.display(viewController: viewController, using: attributes, presentView: presentView)
-        }
-    }
-
-    public class func display(entry view: UIView, using attributes: BEEAttributes, presentView: UIView) {
-        DispatchQueue.main.async {
-            BEEViewProvider.display(view: view, using: attributes, presentView: presentView)
-        }
-    }
-
-    public class func dismiss(presentView view: UIView, with completion: DismissCompletionHandler? = nil) {
-        DispatchQueue.main.async {
-            BEEViewProvider.dismiss(presentView: view, with: completion)
-        }
-    }
-    
-    public class func transform(to view: UIView, presentView: UIView) {
-        DispatchQueue.main.async {
-            BEEViewProvider.transform(to: view, presentView: presentView)
         }
     }
 }

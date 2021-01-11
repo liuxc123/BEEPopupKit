@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         contentView.set(.width, of: 300)
         contentView.set(.height, of: 300)
         
-        var attributes = BEEAttributes.centerFloat
+        var attributes = BEEAttributes.topFloat
         attributes.displayDuration = .infinity
         attributes.precedence = .enqueue(priority: .high)
         attributes.entranceAnimation = BEEAnimations.bounceIn()
