@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mdt-10-JXL">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BEEPopupKit_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,24 +20,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMT-Xw-Rrd">
-                                <rect key="frame" x="171" y="325" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="clickAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KHg-wr-OOG"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xbd-Od-llR">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HMT-Xw-Rrd" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="eUc-P3-vfG"/>
-                            <constraint firstItem="HMT-Xw-Rrd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="zzT-HO-UMD"/>
+                            <constraint firstItem="xbd-Od-llR" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="EIn-1R-FfI"/>
+                            <constraint firstItem="xbd-Od-llR" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="UQk-bU-bMz"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xbd-Od-llR" secondAttribute="bottom" id="akJ-KP-pmk"/>
+                            <constraint firstAttribute="trailing" secondItem="xbd-Od-llR" secondAttribute="trailing" id="c1D-Ct-Die"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Main" id="5hR-pK-tme"/>
+                    <connections>
+                        <outlet property="tableView" destination="xbd-Od-llR" id="CJO-Os-v38"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140" y="96"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="08o-gS-3PP">
+            <objects>
+                <navigationController id="mdt-10-JXL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="192-3q-O6y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="7HJ-q4-H5j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EOf-6N-OIr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-585" y="96"/>
+        </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

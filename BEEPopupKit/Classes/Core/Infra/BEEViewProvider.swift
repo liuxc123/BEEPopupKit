@@ -17,9 +17,12 @@ final class BEEViewProvider: NSObject, EntryPresenterDelegate {
 
     /** Current root controller */
     private var entryVC: BEERootViewController?
+    
+    /** Entry queueing heuristic  */
+    private let entryQueue = BEEAttributes.Precedence.QueueingHeuristic.value.heuristic
 
     /** Cannot be instantiated, customized, inherited */
-    fileprivate init(presentView: UIView) {
+    init(presentView: UIView) {
         self.presentView = presentView
     }
 
@@ -28,7 +31,7 @@ final class BEEViewProvider: NSObject, EntryPresenterDelegate {
     // MARK: - Setup and Teardown methods
 
     // Prepare the view and the host view controller
-    private func prepare(for attributes: BEEAttributes, presentView: UIView) -> BEERootViewController? {
+    private func prepare(for attributes: BEEAttributes) -> BEERootViewController? {
         if entryVC == nil {
             entryVC = BEERootViewController(with: self)
         }
@@ -38,73 +41,117 @@ final class BEEViewProvider: NSObject, EntryPresenterDelegate {
 
         return entryVC
     }
+    
+    /**
+     Privately used to display an entry
+     */
+    func display(entryView: BEEEntryView, using attributes: BEEAttributes) {
+        switch entryView.attributes.precedence {
+        case .override(priority: _, dropEnqueuedEntries: let dropEnqueuedEntries):
+            if dropEnqueuedEntries {
+                entryQueue.removeAll()
+            }
+            show(entryView: entryView)
+        case .enqueue where isCurrentlyDisplaying():
+            entryQueue.enqueue(entry: .init(view: entryView))
+        case .enqueue:
+            show(entryView: entryView)
+        }
+    }
+    
+    // MARK: - Exposed Actions
 
-    /** Display a view using attributes */
-    static func display(view: UIView, using attributes: BEEAttributes, presentView: UIView) {
-        let entryView = BEEEntryView(newEntry: .init(view: view, attributes: attributes))
-        let popupProvider = BEEViewProvider(presentView: presentView)
-        presentView.popupProviders.append(popupProvider)
-        popupProvider.display(entryView: entryView, using: attributes, presentView: presentView)
+    func queueContains(entryNamed name: String? = nil) -> Bool {
+        if name == nil && !entryQueue.isEmpty {
+            return true
+        }
+        if let name = name {
+            return entryQueue.contains(entryNamed: name)
+        } else {
+            return false
+        }
     }
 
-    /** Display a view using attributes */
-    static func display(viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
-        let entryView = BEEEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
-        let popupProvider = BEEViewProvider(presentView: presentView)
-        presentView.popupProviders.append(popupProvider)
-        popupProvider.display(entryView: entryView, using: attributes, presentView: presentView)
+    /**
+     Returns *true* if the currently displayed entry has the given name.
+     In case *name* has the value of *nil*, the result is *true* if any entry is currently displayed.
+     */
+    func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        guard let entryView = entryView else {
+            return false
+        }
+        if let name = name { // Test for names equality
+            return entryView.content.attributes.name == name
+        } else { // Return true by default if the name is *nil*
+            return true
+        }
+    }
+    
+    // clear current entry view
+    private func removeFromPresentView() {
+        entryVC?.view.removeFromSuperview()
+        entryVC = nil
+        entryView = nil
+        presentView.popups.removeAll { [weak self] (popup) -> Bool in
+            guard let self = self else { return false }
+            return popup.provider == self
+        }
     }
     
     func displayPendingEntryOrRollbackWindow(dismissCompletionHandler: BEEPopupKit.DismissCompletionHandler?) {
+        
+        if let next = entryQueue.dequeue() {
 
-        // Display the rollback window
-        removeFromPresentView()
+            // Execute dismiss handler if needed before dequeuing (potentially) another entry
+            dismissCompletionHandler?()
 
-        // As a last step, invoke the dismissal method
-        dismissCompletionHandler?()
+            // Show the next entry in queue
+            show(entryView: next.view)
+        } else {
+
+            // Display the rollback window
+            removeFromPresentView()
+
+            // As a last step, invoke the dismissal method
+            dismissCompletionHandler?()
+        }
     }
-
-    /** Dismiss a view using attributes */
-    static func dismiss(presentView: UIView, contentViewController: UIViewController, with completion: BEEPopupKit.DismissCompletionHandler? = nil) {
-        guard let provider = BEEViewProvider.popupProvider(presentView: presentView, contentView: nil, contentViewController: contentViewController) else {
+    
+    /** Dismiss entries according to a given descriptor */
+    func dismiss(_ descriptor: BEEPopupKit.EntryDismissalDescriptor, with completion: BEEPopupKit.DismissCompletionHandler? = nil) {
+        guard let entryVC = entryVC else {
             return
         }
-        provider.entryVC?.animateOutLastEntry(completionHandler: completion)
-    }
 
-    static func dismiss(presentView: UIView, contentView: UIView, with completion: BEEPopupKit.DismissCompletionHandler? = nil) {
-        guard let provider = BEEViewProvider.popupProvider(presentView: presentView, contentView: contentView, contentViewController: nil) else {
-            return
+        switch descriptor {
+        case .displayed:
+            entryVC.animateOutLastEntry(completionHandler: completion)
+        case .specific(entryName: let name):
+            entryQueue.removeEntries(by: name)
+            if entryView?.attributes.name == name {
+                entryVC.animateOutLastEntry(completionHandler: completion)
+            }
+        case .prioritizedLowerOrEqualTo(priority: let priorityThreshold):
+            entryQueue.removeEntries(withPriorityLowerOrEqualTo: priorityThreshold)
+            if let currentPriority = entryView?.attributes.precedence.priority, currentPriority <= priorityThreshold {
+                entryVC.animateOutLastEntry(completionHandler: completion)
+            }
+        case .enqueued:
+            entryQueue.removeAll()
+        case .all:
+            entryQueue.removeAll()
+            entryVC.animateOutLastEntry(completionHandler: completion)
         }
-        provider.entryVC?.animateOutLastEntry(completionHandler: completion)
     }
 
     /** Layout the view-hierarchy rooted in the window */
     func layoutIfNeeded() {
         presentView?.layoutIfNeeded()
     }
-
-    // clear current entry view
-    private func removeFromPresentView() {
-        entryVC?.view.removeFromSuperview()
-        entryVC = nil
-        entryView = nil
-        presentView.popupProviders.removeAll { [weak self] (provider) -> Bool in
-            guard let self = self else { return false }
-            return provider == self
-        }
-    }
     
-    /**
-     Privately used to display an entry
-     */
-    private func display(entryView: BEEEntryView, using attributes: BEEAttributes, presentView: UIView) {
-        show(entryView: entryView, presentView: presentView)
-    }
-
     /** Privately used to prepare the root view controller and show the entry immediately */
-    private func show(entryView: BEEEntryView, presentView: UIView) {
-        guard let entryVC = prepare(for: entryView.attributes, presentView: presentView) else {
+    private func show(entryView: BEEEntryView) {
+        guard let entryVC = prepare(for: entryView.attributes) else {
             return
         }
         entryVC.configure(entryView: entryView)
@@ -112,34 +159,6 @@ final class BEEViewProvider: NSObject, EntryPresenterDelegate {
         self.entryView = entryView
     }
 
-    private static func popupProvider(presentView: UIView, contentView: UIView?, contentViewController: UIViewController?) -> BEEViewProvider? {
-        var provider: BEEViewProvider?
-        for tempProvider in presentView.popupProviders {
-            if tempProvider.entryView.content.view == contentView {
-                provider = tempProvider
-            }
-            if tempProvider.entryView.content.viewController == contentViewController {
-                provider = tempProvider
-            }
-        }
-        return provider
-    }
 }
 
-fileprivate var popup_provider_key = "popup_provider_key"
 
-extension UIView {
-
-    fileprivate var popupProviders: [BEEViewProvider] {
-        set {
-            objc_setAssociatedObject(self, &popup_provider_key, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
-        get {
-            guard let provider = objc_getAssociatedObject(self, &popup_provider_key) as? [BEEViewProvider] else {
-                objc_setAssociatedObject(self, &popup_provider_key, [], .OBJC_ASSOCIATION_RETAIN)
-                return []
-            }
-            return provider
-        }
-    }
-}

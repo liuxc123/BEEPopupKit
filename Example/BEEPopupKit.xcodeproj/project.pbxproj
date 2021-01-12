@@ -15,6 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		791822283207ADBED8DFA2E5 /* Pods_BEEPopupKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FD1A100249430B2F4C6C99 /* Pods_BEEPopupKit_Example.framework */; };
 		AAD58A65E6FF33F9083BF2E8 /* Pods_BEEPopupKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD3F51229B0D35E7ED3A628 /* Pods_BEEPopupKit_Tests.framework */; };
+		F16472E925ADCBBF0023B153 /* DemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16472E825ADCBBF0023B153 /* DemoListCell.swift */; };
 		F1A0B6DA25A87681000B4A23 /* BEEAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		CFA7BD2F25AD13FCB06063E9 /* Pods-BEEPopupKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Tests/Pods-BEEPopupKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E53B52D674C264F26EB7F0F5 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BEEPopupKit.podspec; path = ../BEEPopupKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ECD3F51229B0D35E7ED3A628 /* Pods_BEEPopupKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F16472E825ADCBBF0023B153 /* DemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoListCell.swift; sourceTree = "<group>"; };
 		F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEEAnimations.swift; sourceTree = "<group>"; };
 		FD38EB4B31117796B9F8515B /* Pods-BEEPopupKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +119,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */,
+				F16472E825ADCBBF0023B153 /* DemoListCell.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -336,6 +339,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				F16472E925ADCBBF0023B153 /* DemoListCell.swift in Sources */,
 				F1A0B6DA25A87681000B4A23 /* BEEAnimations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

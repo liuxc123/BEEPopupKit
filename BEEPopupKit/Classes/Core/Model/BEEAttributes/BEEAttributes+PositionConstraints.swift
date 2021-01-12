@@ -163,9 +163,6 @@ public extension BEEAttributes {
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
 
-        /** The horizontal offset from the top or bottom anchor */
-        public var horizontalOffset: CGFloat
-
         /** Can be used to display the content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
         public var safeArea = SafeArea.empty(fillSafeArea: false)
 
@@ -189,9 +186,8 @@ public extension BEEAttributes {
         }
 
         /** Initialize with default parameters */
-        public init(verticalOffset: CGFloat = 0, horizontalOffset: CGFloat = 0, size: Size = .sizeToWidth, maxSize: Size = .intrinsic) {
+        public init(verticalOffset: CGFloat = 0, size: Size = .sizeToWidth, maxSize: Size = .intrinsic) {
             self.verticalOffset = verticalOffset
-            self.horizontalOffset = horizontalOffset
             self.size = size
             self.maxSize = maxSize
         }

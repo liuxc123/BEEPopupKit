@@ -43,35 +43,12 @@ public extension BEEAttributes {
             return self == .top
         }
 
-        public var isTopLeft: Bool {
-            return self == .topLeft
-        }
-
-        public var isTopRight: Bool {
-            return self == .topRight
-        }
-
         public var isCenter: Bool {
             return self == .center
         }
 
-        public var isCenterLeft: Bool {
-            return self == .centerLeft
-        }
-
-        public var isCenterRight: Bool {
-            return self == .centerRight
-        }
-
         public var isBottom: Bool {
             return self == .bottom
-        }
-
-        public var isBottomLeft: Bool {
-            return self == .bottomLeft
-        }
-        public var isBottomRight: Bool {
-            return self == .bottomRight
         }
     }
 }

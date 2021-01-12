@@ -19,9 +19,8 @@ struct CachedEntry {
         self.rollbackWindow = rollbackWindow
     }
     
-    init(view: BEEEntryView, presentView: UIView) {
+    init(view: BEEEntryView) {
         self.view = view
-        self.presentView = presentView
     }
 }
 

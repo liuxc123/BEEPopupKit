@@ -113,7 +113,9 @@ public final class BEEPopupKit {
 
     public class func display(entry view: UIView, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
-            BEEViewProvider.display(view: view, using: attributes, presentView: presentView)
+            let popup = BEEPopup(to: presentView)
+            presentView.popups.append(popup)
+            popup.display(view: view, using: attributes)
         }
     }
 
@@ -132,9 +134,11 @@ public final class BEEPopupKit {
         }
     }
 
-    public class func display(viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
+    public class func display(entry viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
-            BEEViewProvider.display(viewController: viewController, using: attributes, presentView: presentView)
+            let popup = BEEPopup(to: presentView)
+            presentView.popups.append(popup)
+            popup.display(viewController: viewController, using: attributes)
         }
     }
 
@@ -164,15 +168,9 @@ public final class BEEPopupKit {
         }
     }
 
-    public class func dismiss(presentView view: UIView, contentViewController: UIViewController, with completion: DismissCompletionHandler? = nil) {
+    public class func dismiss(form presentView: UIView, descriptor: BEEPopupKit.EntryDismissalDescriptor = .displayed, with completion: BEEPopupKit.DismissCompletionHandler? = nil) {
         DispatchQueue.main.async {
-            BEEViewProvider.dismiss(presentView: view, contentViewController: contentViewController, with: completion)
-        }
-    }
-
-    public class func dismiss(presentView view: UIView, contentView: UIView, with completion: DismissCompletionHandler? = nil) {
-        DispatchQueue.main.async {
-            BEEViewProvider.dismiss(presentView: view, contentView: contentView, with: completion)
+            presentView.popups.forEach({ $0.provider.dismiss(descriptor, with: nil) })
         }
     }
 
@@ -190,5 +188,50 @@ public final class BEEPopupKit {
                 BEEWindowProvider.shared.layoutIfNeeded()
             }
         }
+    }
+    
+    public class func popups(from presentView: UIView) -> [BEEPopup] {
+        return presentView.popups
+    }
+}
+
+public final class BEEPopup {
+ 
+    /** Current entry presentView */
+    var provider: BEEViewProvider!
+    
+    /** Cannot be instantiated, customized, inherited */
+    public init(to presentView: UIView) {
+        self.provider = BEEViewProvider(presentView: presentView)
+    }
+
+    public func display(view: UIView, using attributes: BEEAttributes) {
+        let entryView = BEEEntryView(newEntry: .init(view: view, attributes: attributes))
+        provider.display(entryView: entryView, using: attributes)
+    }
+    
+    public func display(viewController: UIViewController, using attributes: BEEAttributes) {
+        let entryView = BEEEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
+        DispatchQueue.main.async {
+            self.provider.display(entryView: entryView, using: attributes)
+        }
+    }
+    
+    public func dismiss(_ descriptor: BEEPopupKit.EntryDismissalDescriptor = .displayed, with completion: BEEPopupKit.DismissCompletionHandler? = nil) {
+        DispatchQueue.main.async {
+            self.provider.dismiss(descriptor, with: completion)
+        }
+    }
+
+}
+
+
+private var bee_popups_key = "bee_popups_key"
+
+extension UIView {
+
+    var popups: [BEEPopup] {
+        set { objc_setAssociatedObject(self, &bee_popups_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get { objc_getAssociatedObject(self, &bee_popups_key) as? [BEEPopup] ?? [] }
     }
 }

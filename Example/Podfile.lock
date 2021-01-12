@@ -1,13 +1,16 @@
 PODS:
   - BEEPopupKit (1.0.0):
     - QuickLayout
+  - BEETableKit (1.0.0)
   - QuickLayout (3.0.0)
 
 DEPENDENCIES:
   - BEEPopupKit (from `../`)
+  - BEETableKit
 
 SPEC REPOS:
   trunk:
+    - BEETableKit
     - QuickLayout
 
 EXTERNAL SOURCES:
@@ -16,8 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BEEPopupKit: 804a66d34e1922b2f4a4575bbcf6165e9b9ecae2
+  BEETableKit: bc5127fff06769d0833162973bd6011fc994309c
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
 
-PODFILE CHECKSUM: bbb2a1987c4601aaf36655c980665ecdb88f6cff
+PODFILE CHECKSUM: 8459401289710a95587d86aefbe00a17e430f202
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0
