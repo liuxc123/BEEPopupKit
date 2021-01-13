@@ -50,6 +50,7 @@ public class BEESimpleMessageView: UIView {
                 mode: image.displayMode
             )
         }
+
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

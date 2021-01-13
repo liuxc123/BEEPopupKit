@@ -45,30 +45,6 @@ class ViewController: UIViewController {
             }
         section1.append(row: row3)
         
-        let row4 = TableRow<DemoListCell>(value: "toast view")
-            .on(.click) { [weak self] (options) in
-                self?.showToastView()
-            }
-        section1.append(row: row4)
-        
-        let row5 = TableRow<DemoListCell>(value: "success hud view")
-            .on(.click) { [weak self] (options) in
-                self?.showSuccessHUDView()
-            }
-        section1.append(row: row5)
-        
-        let row6 = TableRow<DemoListCell>(value: "info hud view")
-            .on(.click) { [weak self] (options) in
-                self?.showInfoHUDView()
-            }
-        section1.append(row: row6)
-        
-        let row7 = TableRow<DemoListCell>(value: "error hud view")
-            .on(.click) { [weak self] (options) in
-                self?.showErrorHUDView()
-            }
-        section1.append(row: row7)
-        
         tableDirector.append(section: section1)
     }
 
@@ -134,22 +110,6 @@ class ViewController: UIViewController {
         
         BEEPopupKit.display(entry: contentView, using: attributes, presentView: view)
                 
-    }
-    
-    func showToastView() {
-        BEEToast.show("adsasdasdaaaadada\nasdad\na", view: view)
-    }
-    
-    func showSuccessHUDView() {
-        BEEHUD.show(image: UIImage(named: "success")!, text: "成功加载")
-    }
-    
-    func showInfoHUDView() {
-        BEEHUD.show(image: UIImage(named: "info")!, text: "提示信息")
-    }
-    
-    func showErrorHUDView() {
-        BEEHUD.show(image: UIImage(named: "error")!, text: "失败加载")
     }
 }
 
