@@ -47,6 +47,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
         setupCancelSpaceView(with: message.cancelSpaceContent)
         setupCancelButtonBarView(with: message.cancelButtonBarContent)
         layoutContent(with: message)
+        setupInterfaceStyle()
     }
 
     public required init?(coder aDecoder: NSCoder) {

@@ -48,23 +48,23 @@ class ViewController: UIViewController {
 
     func showAlertView() {
 
-
-//        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
-//        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
-//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+        // Global Setting
+        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
+        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
+        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
 
 
         let alert = BEEAlertView(title: "title", message: "message", imageName: "info")
 
-//        let customView = UIView()
-//        customView.backgroundColor = .yellow
-//        customView.set(.height, of: 100)
-//        alert.customView = customView
+        let customView = UIView()
+        customView.backgroundColor = .yellow
+        customView.set(.height, of: 100)
+        alert.customView = customView
 
         alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
             print(action.title)
@@ -72,24 +72,31 @@ class ViewController: UIViewController {
         alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
             print(action.title)
         }))
-
-        for _ in 0 ... 20 {
-            alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-                print(action.title)
-            }))
-        }
 
         alert.show()
     }
 
     func showActionSheetView() {
 
-        let customView = UIView()
-        customView.backgroundColor = .yellow
-        customView.set(.height, of: 100)
+        // Global Setting
+        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.lightText)
+        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.lightText)
+        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+
+        let button = UIButton()
+        button.backgroundColor = .yellow
+        button.set(.height, of: 100)
+        button.setTitle("自定义按钮", for: .normal)
+        button.addTarget(self, action: #selector(clickAction(_:)), for: .touchUpInside)
+
 
         let alert = BEEActionSheetView(title: "title", message: "message")
-        alert.customView = customView
+        alert.customView = button
 
         let attributedTitle = NSMutableAttributedString(string: "确定")
 
@@ -104,6 +111,14 @@ class ViewController: UIViewController {
         })
         alert.addAction(action: action)
 
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+            print(action.title)
+        }))
+
         for _ in 0 ... 20 {
             alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
                 print(action.title)
@@ -116,7 +131,6 @@ class ViewController: UIViewController {
 
 
         alert.show()
-
     }
 
 
@@ -135,6 +149,10 @@ class ViewController: UIViewController {
 
         let popup = BEEPopup(to: view)
         popup.display(view: contentView, using: attributes)
+    }
+
+    @objc func clickAction(_ sender: UIButton) {
+        print(sender.title(for: .normal) ?? "")
     }
 }
 

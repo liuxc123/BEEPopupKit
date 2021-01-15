@@ -416,7 +416,7 @@ public struct BEEProperty {
     }
 
     /** Custom view descriptor */
-    public class CustomContent {
+    public struct CustomContent {
 
         /** The view */
         public var view: UIView
