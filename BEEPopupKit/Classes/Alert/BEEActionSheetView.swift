@@ -69,9 +69,12 @@ open class BEEActionSheetView {
     public lazy var attributes: BEEAttributes = {
         var attributes: BEEAttributes = .bottomToast
         attributes.displayDuration = .infinity
-        attributes.positionConstraints.maxSize = .init(width: .fill, height: .fill)
+        let safeAreaInsets = BEEWindowProvider.safeAreaInsets
+        let maxHeight = UIScreen.main.bounds.size.height - safeAreaInsets.top - safeAreaInsets.bottom
+        attributes.positionConstraints.maxSize = .init(width: .fill, height: .constant(value: maxHeight))
         attributes.positionConstraints.size = .init(width: .fill, height: .intrinsic)
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
+        attributes.positionConstraints.rotation.isEnabled = true
         attributes.screenBackground = .color(color: BEEColor.black.with(alpha: 0.4))
         attributes.entryBackground = .color(color: config.backgroundColor)
         attributes.screenInteraction = .absorbTouches

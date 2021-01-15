@@ -10,6 +10,7 @@ import UIKit
 final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     // MARK: Props
+
     var thumbStackView: UIStackView!
     var headerStackView: UIStackView!
     var buttonStackView: UIStackView!
@@ -18,6 +19,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     let messageContentView = BEEMessageContentView()
     var customView: UIView?
     var buttonBarView: BEEButtonBarView!
+    var buttonScrollView: UIScrollView!
     let cancelSpaceView = UIView()
     var cancelButtonBarView: BEEButtonBarView!
     let defaultCancelSpaceContent = BEEProperty.SpaceContent(backgroundColor: BEEColor(UIColor(hex6: 0xCCCCCC)), height: 10)
@@ -40,6 +42,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
         setupThumbImageView(with: message.image)
         setupMessageContentView(with: message.title, description: message.description)
         setupCustomContentView(with: message.custom)
+        setupButtonScrollView(with: message.buttonBarContent)
         setupButtonBarView(with: message.buttonBarContent)
         setupCancelSpaceView(with: message.cancelSpaceContent)
         setupCancelButtonBarView(with: message.cancelButtonBarContent)
@@ -93,10 +96,17 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
         headerStackView.addArrangedSubview(customView!)
     }
 
+    private func setupButtonScrollView(with content: BEEProperty.ButtonBarContent) {
+        buttonScrollView = UIScrollView()
+        buttonScrollView.clipsToBounds = true
+        buttonScrollView.bounces = false
+        buttonStackView.addArrangedSubview(buttonScrollView)
+    }
+
     private func setupButtonBarView(with content: BEEProperty.ButtonBarContent) {
         buttonBarView = BEEButtonBarView(with: content)
         buttonBarView.clipsToBounds = true
-        buttonStackView.addArrangedSubview(buttonBarView)
+        buttonScrollView.addSubview(buttonBarView)
     }
 
     private func setupCancelSpaceView(with content: BEEProperty.SpaceContent?) {
@@ -121,6 +131,11 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
         headerStackView.layout(.top, to: .bottom, of: thumbImageView)
         headerStackView.layoutToSuperview(.left, offset: 16)
         headerStackView.layoutToSuperview(.right, offset: -16)
+
+        buttonBarView.layoutToSuperview(.top, .bottom, .left, .right, .width)
+        buttonBarView.expand()
+
+        buttonScrollView.layout(.height, to: .height, of: buttonBarView, relation: .equal, priority: .defaultHigh)
 
         buttonStackView.layout(.top, to: .bottom, of: headerStackView, offset: 10)
         buttonStackView.layoutToSuperview(.bottom, .left, .right)

@@ -78,6 +78,9 @@ open class BEEAlertView {
         attributes.roundCorners = .all(radius: config.cornerRadius)
         attributes.border = .value(color: .black, width: 0.3)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5))
+        let safeAreaInsets = BEEWindowProvider.safeAreaInsets
+        let maxHeight = UIScreen.main.bounds.size.height - safeAreaInsets.top - safeAreaInsets.bottom
+        attributes.positionConstraints.maxSize = .init(width: .fill, height: .constant(value: maxHeight))
         attributes.positionConstraints.size = .init(width: .constant(value: config.width), height: .intrinsic)
         attributes.entranceAnimation = .init(
             scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)),

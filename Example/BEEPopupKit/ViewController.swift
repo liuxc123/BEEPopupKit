@@ -48,6 +48,7 @@ class ViewController: UIViewController {
 
     func showAlertView() {
 
+
 //        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
 //        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
 //        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
@@ -71,6 +72,13 @@ class ViewController: UIViewController {
         alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
             print(action.title)
         }))
+
+        for _ in 0 ... 20 {
+            alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+                print(action.title)
+            }))
+        }
+
         alert.show()
     }
 
