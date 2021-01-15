@@ -109,8 +109,12 @@ public class BEEMessageContentView: UIView {
     }
 
     private func setupInterfaceStyle() {
-        titleLabel.textColor = titleContent?.style.color(for: traitCollection)
-        subtitleLabel.textColor = subtitleContent?.style.color(for: traitCollection)
+        if titleContent.attributedText == nil {
+            titleLabel.textColor = titleContent?.style.color(for: traitCollection)
+        }
+        if subtitleContent.attributedText == nil {
+            subtitleLabel.textColor = subtitleContent?.style.color(for: traitCollection)
+        }
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

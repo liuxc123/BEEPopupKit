@@ -13,15 +13,13 @@ import BEETableKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+
     lazy var tableDirector: TableDirector = {
         return TableDirector(tableView: tableView)
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        BEEAlertViewConfig.shared.actionNormalColor = .red
-        BEEAlertViewConfig.shared.cornerRadius = 20
 
         let section1 = TableSection(headerTitle: "自定义视图", footerTitle: nil)
         section1.headerHeight = 50
@@ -49,51 +47,71 @@ class ViewController: UIViewController {
     }
 
     func showAlertView() {
-        let alert = BEEAlertView(title: "title", message: "message")
+
+//        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
+//        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
+//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+
+
+        let alert = BEEAlertView(title: "title", message: "message", imageName: "info")
+
+//        let customView = UIView()
+//        customView.backgroundColor = .yellow
+//        customView.set(.height, of: 100)
+//        alert.customView = customView
+
         alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
             print(action.title)
         }))
         alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
             print(action.title)
         }))
         alert.show()
     }
 
     func showActionSheetView() {
+
+        let customView = UIView()
+        customView.backgroundColor = .yellow
+        customView.set(.height, of: 100)
+
         let alert = BEEActionSheetView(title: "title", message: "message")
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        alert.customView = customView
+
+        let attributedTitle = NSMutableAttributedString(string: "确定")
+
+        attributedTitle.setAttributes(
+            [NSAttributedString.Key.foregroundColor : UIColor.blue],
+            range: NSRange(location: 0, length: 2)
+        )
+        alert.attributedTitle = attributedTitle
+        
+        let action = BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
             print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
-            print(action.title)
-        }))
+        })
+        alert.addAction(action: action)
+
+        for _ in 0 ... 20 {
+            alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+                print(action.title)
+            }))
+        }
+
         alert.addAction(action: BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
             print(action.title)
         }))
+
+
         alert.show()
+
     }
-    
+
+
     func showCustomView() {
         let contentView = UIView()
         contentView.backgroundColor = .red
@@ -105,11 +123,10 @@ class ViewController: UIViewController {
         attributes.positionConstraints.verticalOffset = 44
         attributes.positionConstraints.size = .init(width: .constant(value: 300), height: .constant(value: 300))
         attributes.roundCorners = .all(radius: 10)
-        attributes.position = .bottomLeft
         attributes.entranceAnimation = .init(translate: .init(duration: 0.3, anchorPosition: .top, delay: 0, spring: nil))
-        
-        BEEPopupKit.display(entry: contentView, using: attributes, presentView: view)
-                
+
+        let popup = BEEPopup(to: view)
+        popup.display(view: contentView, using: attributes)
     }
 }
 

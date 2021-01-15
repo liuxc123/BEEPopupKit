@@ -19,15 +19,16 @@ public struct BEEAlertViewConfig {
     public var messageFont: UIFont = .systemFont(ofSize: 14)
     public var buttonFont: UIFont = .systemFont(ofSize: 17)
 
-    public var backgroundColor: UIColor = UIColor(hex6: 0xFFFFFF)
-    public var titleColor: UIColor = UIColor(hex6: 0x333333)
-    public var messageColor: UIColor = UIColor(hex6: 0x666666)
-    public var separatorColor: UIColor = UIColor(hex6: 0xCCCCCC)
+    public var backgroundColor: BEEColor = BEEColor(UIColor(hex6: 0xFFFFFF))
+    public var titleColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var messageColor: BEEColor = BEEColor(UIColor(hex6: 0x666666))
+    public var separatorColor: BEEColor = BEEColor(UIColor(hex6: 0xCCCCCC))
 
-    public var actionNormalColor: UIColor = UIColor(hex6: 0x333333)
-    public var actionDisableColor: UIColor = UIColor(hex6: 0x999999)
-    public var actionHighlightColor: UIColor = UIColor(hex6: 0xE76153)
-    public var actionPressedColor: UIColor = UIColor(hex6: 0xEFEDE7)
+    public var actionNormalColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var actionCancelColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var actionDestructiveColor: BEEColor = BEEColor(UIColor(hex6: 0xE76153))
+    public var actionDisableColor: BEEColor = BEEColor(UIColor(hex6: 0x999999))
+    public var actionPressedColor: BEEColor = BEEColor(UIColor(hex6: 0xEFEDE7))
 
     public var titleTextAlignment: NSTextAlignment = .center
     public var messageTextAlignment: NSTextAlignment = .center
@@ -45,8 +46,11 @@ open class BEEAlertView {
 
     public var actions = [BEEAlertAction]()
     public var title: String!
+    public var attributedTitle: NSAttributedString?
     public var message: String!
+    public var attributedMessage: NSAttributedString?
     public var imageName: String!
+    public var customView: UIView?
 
     public var config: BEEAlertViewConfig = BEEAlertViewConfig.shared
 
@@ -60,7 +64,7 @@ open class BEEAlertView {
         self.actions.append(action)
     }
 
-    private var alertAttributes: BEEAttributes {
+    public lazy var attributes: BEEAttributes = {
         var attributes: BEEAttributes
 
         attributes = .centerFloat
@@ -87,14 +91,15 @@ open class BEEAlertView {
             height: .intrinsic
         )
         return attributes
-    }
+    }()
 
     public func show() {
         let titleContent = BEEProperty.LabelContent(
             text: title,
+            attributedText: attributedTitle,
             style: .init(
                 font: config.titleFont,
-                color: BEEColor(config.titleColor),
+                color: config.titleColor,
                 alignment: config.titleTextAlignment,
                 displayMode: config.displayMode
             ),
@@ -103,9 +108,10 @@ open class BEEAlertView {
 
         let descriptionContent = BEEProperty.LabelContent(
             text: message,
+            attributedText: attributedMessage,
             style: .init(
                 font: config.messageFont,
-                color: BEEColor(config.messageColor),
+                color: config.messageColor,
                 alignment: config.messageTextAlignment,
                 displayMode: config.displayMode
             )
@@ -122,57 +128,64 @@ open class BEEAlertView {
             )
         }
 
-        let simpleMessage = BEESimpleMessage(image: imageContent,
-                                             title: titleContent,
-                                             description: descriptionContent)
+        var customContent: BEEProperty.CustomContent?
+        if let customView = self.customView {
+            customContent = BEEProperty.CustomContent(view: customView)
+        }
 
         var buttonContents = [BEEProperty.ButtonContent]()
         for action in actions
         {
-            var textColor: UIColor!
+            var textColor: BEEColor!
             switch action.style {
-            case .normal, .cancel:
+            case .normal:
                 textColor = config.actionNormalColor
-            case .highlight:
-                textColor = config.actionHighlightColor
-            case .disabled:
-                textColor = config.actionDisableColor
+            case .cancel:
+                textColor = config.actionCancelColor
+            case .destructive:
+                textColor = config.actionDestructiveColor
             }
 
             let buttonLabel = BEEProperty.LabelContent(
                 text: action.title,
+                attributedText: action.attributedTitle,
                 style: BEEProperty.LabelStyle(
                     font: config.buttonFont,
-                    color: BEEColor(textColor),
+                    color: textColor,
                     alignment: config.buttonTextAlignment,
                     displayMode: config.displayMode
                 )
             )
             let buttonContent = BEEProperty.ButtonContent(
                 label: buttonLabel,
-                backgroundColor: BEEColor(action.backgroundColor ?? .clear),
-                highlightedBackgroundColor: BEEColor(config.actionPressedColor),
+                backgroundColor: action.backgroundColor ?? .clear,
+                highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
-                    BEEPopupKit.dismiss()
+                    if action.disabled { return }
+                    if action.canAutoHide { BEEPopupKit.dismiss() }
                     action.completion?(action)
             }
             buttonContents.append(buttonContent)
         }
         let buttonsBarContent = BEEProperty.ButtonBarContent(
             with: buttonContents,
-            separatorColor: BEEColor(config.separatorColor),
+            separatorColor: config.separatorColor,
             buttonHeight: config.buttonHeight,
             displayMode: config.displayMode
         )
 
         let alertMessage = BEEAlertMessage(
-            simpleMessage: simpleMessage,
-            imagePosition: .top,
-            buttonBarContent: buttonsBarContent
+            image: imageContent,
+            title: titleContent,
+            description: descriptionContent,
+            custom: customContent,
+            buttonBarContent: buttonsBarContent,
+            backgroundColor: config.backgroundColor,
+            displayMode: config.displayMode
         )
         let contentView = BEEAlertMessageView(with: alertMessage)
 
-        BEEPopupKit.display(entry: contentView, using: alertAttributes)
+        BEEPopupKit.display(entry: contentView, using: attributes)
     }
 
 }

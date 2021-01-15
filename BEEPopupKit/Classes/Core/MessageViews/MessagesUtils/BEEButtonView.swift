@@ -50,11 +50,14 @@ final class BEEButtonView: UIView {
     }
 
     private func setupTitleLabel() {
+        titleLabel.text = content.label.text
         titleLabel.numberOfLines = content.label.style.numberOfLines
         titleLabel.font = content.label.style.font
-        titleLabel.text = content.label.text
         titleLabel.textAlignment = .center
         titleLabel.lineBreakMode = .byWordWrapping
+        if let attributeText = content.label.attributedText {
+            titleLabel.attributedText = attributeText
+        }
         addSubview(titleLabel)
         titleLabel.layoutToSuperview(axis: .horizontally,
                                      offset: content.contentEdgeInset)
@@ -73,7 +76,9 @@ final class BEEButtonView: UIView {
 
     private func setupInterfaceStyle() {
         backgroundColor = content.backgroundColor(for: traitCollection)
-        titleLabel.textColor = content.label.style.color(for: traitCollection)
+        if content.label.attributedText == nil {
+            titleLabel.textColor = content.label.style.color(for: traitCollection)
+        }
     }
 
     // MARK: - Selectors

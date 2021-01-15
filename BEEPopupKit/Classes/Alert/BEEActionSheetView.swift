@@ -18,17 +18,17 @@ public struct BEEActionSheetViewConfig {
     public var messageFont: UIFont = .systemFont(ofSize: 14)
     public var buttonFont: UIFont = .systemFont(ofSize: 17)
 
-    public var backgroundColor: UIColor = UIColor(hex6: 0xFFFFFF)
-    public var titleColor: UIColor = UIColor(hex6: 0x333333)
-    public var messageColor: UIColor = UIColor(hex6: 0x666666)
-    public var separatorColor: UIColor = UIColor(hex6: 0xCCCCCC)
-    public var spaceColor: UIColor = UIColor(hex6: 0xCCCCCC)
+    public var backgroundColor: BEEColor = BEEColor(UIColor(hex6: 0xFFFFFF))
+    public var titleColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var messageColor: BEEColor = BEEColor(UIColor(hex6: 0x666666))
+    public var separatorColor: BEEColor = BEEColor(UIColor(hex6: 0xCCCCCC))
+    public var spaceColor: BEEColor = BEEColor(UIColor(hex6: 0xCCCCCC))
 
-    public var actionNormalColor: UIColor = UIColor(hex6: 0x333333)
-    public var actionHighlightColor: UIColor = UIColor(hex6: 0xE76153)
-    public var actionDisableColor: UIColor = UIColor(hex6: 0x999999)
-    public var actionCancelColor: UIColor = UIColor(hex6: 0x333333)
-    public var actionPressedColor: UIColor = UIColor(hex6: 0xEFEDE7)
+    public var actionNormalColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var actionCancelColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
+    public var actionDestructiveColor: BEEColor = BEEColor(UIColor(hex6: 0xE76153))
+    public var actionDisableColor: BEEColor = BEEColor(UIColor(hex6: 0x999999))
+    public var actionPressedColor: BEEColor = BEEColor(UIColor(hex6: 0xEFEDE7))
 
     public var titleTextAlignment: NSTextAlignment = .center
     public var messageTextAlignment: NSTextAlignment = .center
@@ -37,7 +37,7 @@ public struct BEEActionSheetViewConfig {
     public var spaceHeight: CGFloat = 10
     public var imageSize: CGSize = CGSize(width: 50, height: 50)
 
-    public var displayMode: BEEAttributes.DisplayMode = .dark
+    public var displayMode: BEEAttributes.DisplayMode = .inferred
 
     public var defaultTextCancel: String = "取消"
 
@@ -48,8 +48,11 @@ open class BEEActionSheetView {
 
     public var actions = [BEEAlertAction]()
     public var title: String!
+    public var attributedTitle: NSAttributedString?
     public var message: String!
+    public var attributedMessage: NSAttributedString?
     public var imageName: String!
+    public var customView: UIView?
 
     public var config: BEEActionSheetViewConfig = BEEActionSheetViewConfig.shared
 
@@ -63,13 +66,14 @@ open class BEEActionSheetView {
         self.actions.append(action)
     }
 
-    private var actionSheetAttributes: BEEAttributes {
+    public lazy var attributes: BEEAttributes = {
         var attributes: BEEAttributes = .bottomToast
         attributes.displayDuration = .infinity
+        attributes.positionConstraints.maxSize = .init(width: .fill, height: .fill)
         attributes.positionConstraints.size = .init(width: .fill, height: .intrinsic)
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.screenBackground = .color(color: BEEColor.black.with(alpha: 0.4))
-        attributes.entryBackground = .color(color: BEEColor(config.backgroundColor))
+        attributes.entryBackground = .color(color: config.backgroundColor)
         attributes.screenInteraction = .absorbTouches
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .top(radius: config.cornerRadius)
@@ -77,14 +81,15 @@ open class BEEActionSheetView {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5))
         attributes.precedence = .enqueue(priority: .high)
         return attributes
-    }
+    }()
 
     public func show() {
         let titleContent = BEEProperty.LabelContent(
             text: title,
+            attributedText: attributedTitle,
             style: .init(
                 font: config.titleFont,
-                color: BEEColor(config.titleColor),
+                color: config.titleColor,
                 alignment: config.titleTextAlignment,
                 displayMode: config.displayMode
             ),
@@ -93,9 +98,10 @@ open class BEEActionSheetView {
 
         let descriptionContent = BEEProperty.LabelContent(
             text: message,
+            attributedText: attributedMessage,
             style: .init(
                 font: config.messageFont,
-                color: BEEColor(config.messageColor),
+                color: config.messageColor,
                 alignment: config.messageTextAlignment,
                 displayMode: config.displayMode
             )
@@ -112,9 +118,10 @@ open class BEEActionSheetView {
             )
         }
 
-        let simpleMessage = BEESimpleMessage(image: imageContent,
-                                             title: titleContent,
-                                             description: descriptionContent)
+        var customContent: BEEProperty.CustomContent?
+        if let customView = self.customView {
+            customContent = BEEProperty.CustomContent(view: customView)
+        }
 
         var buttonContents = [BEEProperty.ButtonContent]()
         for action in actions
@@ -123,29 +130,30 @@ open class BEEActionSheetView {
                 continue
             }
 
-            var textColor: UIColor!
+            var textColor: BEEColor!
             switch action.style {
             case .normal:
                 textColor = config.actionNormalColor
-            case .highlight, .cancel:
-                textColor = config.actionHighlightColor
-            case .disabled:
-                textColor = config.actionDisableColor
+            case .cancel:
+                textColor = config.actionCancelColor
+            case .destructive:
+                textColor = config.actionDestructiveColor
             }
 
             let buttonLabel = BEEProperty.LabelContent(
                 text: action.title,
+                attributedText: action.attributedTitle,
                 style: BEEProperty.LabelStyle(
                     font: config.buttonFont,
-                    color: BEEColor(textColor),
+                    color: textColor,
                     alignment: config.buttonTextAlignment,
                     displayMode: config.displayMode
                 )
             )
             let buttonContent = BEEProperty.ButtonContent(
                 label: buttonLabel,
-                backgroundColor: BEEColor(action.backgroundColor ?? .clear),
-                highlightedBackgroundColor: BEEColor(config.actionPressedColor),
+                backgroundColor: action.backgroundColor ?? .clear,
+                highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
                     BEEPopupKit.dismiss()
                     action.completion?(action)
@@ -154,7 +162,7 @@ open class BEEActionSheetView {
         }
         let buttonsBarContent = BEEProperty.ButtonBarContent(
             with: buttonContents,
-            separatorColor: BEEColor(config.separatorColor),
+            separatorColor: config.separatorColor,
             buttonHeight: config.buttonHeight,
             displayMode: config.displayMode
         )
@@ -172,45 +180,51 @@ open class BEEActionSheetView {
 
             let buttonLabel = BEEProperty.LabelContent(
                 text: action.title.isEmpty ? config.defaultTextCancel : action.title,
+                attributedText: action.attributedTitle,
                 style: BEEProperty.LabelStyle(
                     font: config.buttonFont,
-                    color: BEEColor(config.actionCancelColor),
+                    color: config.actionCancelColor,
                     alignment: config.buttonTextAlignment,
                     displayMode: config.displayMode
                 )
             )
             let buttonContent = BEEProperty.ButtonContent(
                 label: buttonLabel,
-                backgroundColor: BEEColor(action.backgroundColor ?? .clear),
-                highlightedBackgroundColor: BEEColor(config.actionPressedColor),
+                backgroundColor: action.backgroundColor ?? .clear,
+                highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
-                    BEEPopupKit.dismiss()
+                    if action.disabled { return }
+                    if action.canAutoHide { BEEPopupKit.dismiss() }
                     action.completion?(action)
             }
             cancelButtonContents.append(buttonContent)
         }
         let cancelButtonsBarContent = BEEProperty.ButtonBarContent(
             with: cancelButtonContents,
-            separatorColor: BEEColor(config.separatorColor),
+            separatorColor: config.separatorColor,
             buttonHeight: config.buttonHeight,
             displayMode: config.displayMode
         )
 
         let cancelSpaceContent = BEEProperty.SpaceContent(
-            backgroundColor: BEEColor(config.spaceColor),
+            backgroundColor: config.spaceColor,
             height: config.spaceHeight
         )
 
         let alertMessage = BEEAlertMessage(
-            simpleMessage: simpleMessage,
-            imagePosition: .top,
+            image: imageContent,
+            title: titleContent,
+            description: descriptionContent,
+            custom: customContent,
             buttonBarContent: buttonsBarContent,
             cancelSpaceContent: cancelSpaceContent,
-            cancelButtonBarContent: cancelButtonsBarContent
+            cancelButtonBarContent: cancelButtonsBarContent,
+            backgroundColor: config.backgroundColor,
+            displayMode: config.displayMode
         )
         let contentView = BEEAlertMessageView(with: alertMessage)
 
-        BEEPopupKit.display(entry: contentView, using: actionSheetAttributes)
+        BEEPopupKit.display(entry: contentView, using: attributes)
     }
 
 }

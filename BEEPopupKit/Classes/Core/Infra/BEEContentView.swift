@@ -133,17 +133,17 @@ class BEEContentView: UIView {
         }
 
         switch attributes.position {
-        case .top, .topLeft, .topRight:
+        case .top:
             messageInAnchor = .top
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
             inOffset += attributes.positionConstraints.verticalOffset
             spacerView?.layout(.bottom, to: .top, of: self)
-        case .bottom, .bottomLeft, .bottomRight:
+        case .bottom:
             messageInAnchor = .bottom
             inOffset = overrideSafeArea ? 0 : -safeAreaInsets.bottom
             inOffset -= attributes.positionConstraints.verticalOffset
             spacerView?.layout(.top, to: .bottom, of: self)
-        case .center, .centerLeft, .centerRight:
+        case .center:
             messageInAnchor = .centerY
         }
 
@@ -159,9 +159,9 @@ class BEEContentView: UIView {
 
         totalTranslation = inOffset
         switch attributes.position {
-        case .top, .topLeft, .topRight:
+        case .top:
             verticalLimit = inOffset
-        case .bottom, .bottomLeft, .bottomRight, .center, .centerLeft, .centerRight:
+        case .bottom, .center:
             verticalLimit = UIScreen.main.bounds.height + inOffset
         }
 
@@ -479,7 +479,7 @@ class BEEContentView: UIView {
         super.removeFromSuperview()
         contentView.content.viewController?.removeFromParent()
 
-        entryDelegate.didFinishDisplaying(entry: contentView, keepWindowActive: keepWindow, dismissCompletionHandler: dismissHandler)
+        entryDelegate?.didFinishDisplaying(entry: contentView, keepWindowActive: keepWindow, dismissCompletionHandler: dismissHandler)
 
         // Lastly, perform the Dismiss Completion Handler as the entry is no longer displayed
         didDisappear?()

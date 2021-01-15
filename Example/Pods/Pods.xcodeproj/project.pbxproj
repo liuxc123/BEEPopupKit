@@ -159,7 +159,7 @@
 		124BCF197E2EDD87218F75C0759615DC /* BEEPopupKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BEEPopupKit-umbrella.h"; sourceTree = "<group>"; };
 		1286F9DA7B2444B0399B4DA52A7E6310 /* BEEPopUpMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEPopUpMessageView.swift; sourceTree = "<group>"; };
 		134AA5E0D5CCFDAF880FC0A9F24364C5 /* BEEViewProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEViewProvider.swift; sourceTree = "<group>"; };
-		1531A0C9F04BE6979046867C0A915962 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		1531A0C9F04BE6979046867C0A915962 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		16B89BA7EF65662A3A425F81E3AD6C84 /* BEEAlertAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEAlertAction.swift; sourceTree = "<group>"; };
 		170F656C3B8C1AE74092EEC9E6D562F4 /* BEEProperty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEProperty.swift; sourceTree = "<group>"; };
 		18D8C3E0FA69E8D413B549230F11AF42 /* BEENotificationMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEENotificationMessage.swift; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 		253E88BF389563BAAD8B73648983B70A /* UIView+Responder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Responder.swift"; sourceTree = "<group>"; };
 		2811FDC076DE9EFD5F79D65927A4ABE1 /* BEEAttributes+Scroll.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+Scroll.swift"; sourceTree = "<group>"; };
 		2848938BC8D2F36C7AD554638E924B97 /* TableCellAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TableCellAction.swift; path = BEETableKit/Classes/TableCellAction.swift; sourceTree = "<group>"; };
-		2A3176879011D83EBCE69038F6B3491A /* QuickLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickLayout.framework; path = QuickLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A3176879011D83EBCE69038F6B3491A /* QuickLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A8EAC5CCFF31BBA70082879B34981F9 /* BEEColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEColor.swift; sourceTree = "<group>"; };
 		2B2E52C23BE4EFC03974695F59CE92A6 /* BEEAlertMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEAlertMessageView.swift; sourceTree = "<group>"; };
 		2C4667F977BF8DDE4E0BE428E79EC532 /* BEEAccessoryNoteMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEAccessoryNoteMessageView.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 		410249631A9DD1FA8547437975710145 /* BEEContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEContentView.swift; sourceTree = "<group>"; };
 		414E216379584300067B052E3B5AECBC /* BEETableKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BEETableKit-dummy.m"; sourceTree = "<group>"; };
 		420D04DB49B32E0EA88C9FCE041B9B6D /* BEEPopupKit+Bundle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEPopupKit+Bundle.swift"; sourceTree = "<group>"; };
-		47CBD751928D005DAB71AA7F687822C1 /* BEETableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BEETableKit.framework; path = BEETableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		47CBD751928D005DAB71AA7F687822C1 /* BEETableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BEETableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A50A4253E485BD7706D87A7FD9A4ACA /* UIApplication+BEEAppearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIApplication+BEEAppearance.swift"; sourceTree = "<group>"; };
 		4BFF01A1AE330BED4E9A2DAD7A770651 /* Pods-BEEPopupKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BEEPopupKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		4C5C198003A4C13CA09F55CC32D73CA1 /* BEEAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEAttributes.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		4FA84E27397A49F35C2CF9D7C2DBD370 /* QuickLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = QuickLayout.debug.xcconfig; sourceTree = "<group>"; };
 		4FC4DC20F3D44200EDE9C85FDCD0A1F3 /* Pods-BEEPopupKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BEEPopupKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		538B8D16B6FCA5187F1BD715883CCAB8 /* Pods-BEEPopupKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BEEPopupKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		5401A11E3599E806C047F38B3D67E4A9 /* BEEPopupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BEEPopupKit.framework; path = BEEPopupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5401A11E3599E806C047F38B3D67E4A9 /* BEEPopupKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BEEPopupKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5690A3A84CF73D7A679CB5F3F9975969 /* EntryCachingHeuristic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EntryCachingHeuristic.swift; sourceTree = "<group>"; };
 		60947C0E9F7224A7963D14E666336A8A /* Pods-BEEPopupKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BEEPopupKit_Example.modulemap"; sourceTree = "<group>"; };
 		60DDD0B4FFCD57098E47CC9DE8D8A852 /* UIView+QLContentWrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+QLContentWrap.swift"; path = "QuickLayout/UIView+QLContentWrap.swift"; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		655124206F0016FB7DAE76EF110C0ED5 /* UIView+Shadow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		679B75DA038EB8500D0ADF3C78A88E10 /* ConfigurableCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfigurableCell.swift; path = BEETableKit/Classes/ConfigurableCell.swift; sourceTree = "<group>"; };
 		6894597127C20A2BCC853A5230D172AD /* BEEAttributes+Presets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+Presets.swift"; sourceTree = "<group>"; };
-		69AFD9CB31D71F4698A54D7DA63C528C /* Pods_BEEPopupKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BEEPopupKit_Tests.framework; path = "Pods-BEEPopupKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		69AFD9CB31D71F4698A54D7DA63C528C /* Pods_BEEPopupKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0409E00086C903335333DAC35E7C5B /* BEEAttributes+DisplayMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+DisplayMode.swift"; sourceTree = "<group>"; };
 		6DCF9597A0E8202EAB721ABA1AE8806A /* Pods-BEEPopupKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BEEPopupKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6EA396841B12C2497985A92A18055432 /* BEEAttributes+PositionConstraints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+PositionConstraints.swift"; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		7F01CC8E674E880E78537190559AA5A3 /* BEEPopUpMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEPopUpMessage.swift; sourceTree = "<group>"; };
 		7F7A6C2556B7CAE544EEA06BA82CC530 /* UIViewArray+QuickLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewArray+QuickLayout.swift"; path = "QuickLayout/UIViewArray+QuickLayout.swift"; sourceTree = "<group>"; };
 		818703911815CEFCFD29D72969662655 /* BEEAttributes+Shadow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+Shadow.swift"; sourceTree = "<group>"; };
-		81ED0E2CD18EC70C86CDFFF7D3BD50AF /* Pods_BEEPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BEEPopupKit_Example.framework; path = "Pods-BEEPopupKit_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81ED0E2CD18EC70C86CDFFF7D3BD50AF /* Pods_BEEPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		828983FE0788E8E3E3BE2614A82E4BB0 /* BEEImageNoteMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEEImageNoteMessageView.swift; sourceTree = "<group>"; };
 		8C26256B42960CC4B140D71101F632B2 /* BEETableKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BEETableKit-prefix.pch"; sourceTree = "<group>"; };
 		8C843C84057470637545C138EC4693CC /* BEESimpleMessageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEESimpleMessageView.swift; sourceTree = "<group>"; };
@@ -239,9 +239,9 @@
 		9372E190E6E3E9D1C016C0A61C2CA316 /* QuickLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "QuickLayout-dummy.m"; sourceTree = "<group>"; };
 		93FC8E5440488AA1C32C2B0FF81382E2 /* TablePrototypeCellHeightCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TablePrototypeCellHeightCalculator.swift; path = BEETableKit/Classes/TablePrototypeCellHeightCalculator.swift; sourceTree = "<group>"; };
 		978B04516E9A5B7497B232437E7FBE8B /* BEEAttributes+UserInteraction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BEEAttributes+UserInteraction.swift"; sourceTree = "<group>"; };
-		980A90F72356969729F342283A5A24E0 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BEEPopupKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		980A90F72356969729F342283A5A24E0 /* BEEPopupKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BEEPopupKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		99644CADC9758BE4A676093F7436A3BB /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = BEETableKit/Classes/Operators.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E406DCC01ADBF93A04B405DDE11EC5F /* BEEPopupKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BEEPopupKit.release.xcconfig; sourceTree = "<group>"; };
 		A2C96960B11993C8831786AFF50ABDC2 /* QuickLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "QuickLayout-prefix.pch"; sourceTree = "<group>"; };
 		A3635F09898147C681F9B90C6077FB7D /* BEERatingSymbolView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BEERatingSymbolView.swift; sourceTree = "<group>"; };
@@ -340,7 +340,6 @@
 				7F7A6C2556B7CAE544EEA06BA82CC530 /* UIViewArray+QuickLayout.swift */,
 				FB496BB6B20D0529CB1C3E06D6F954A1 /* Support Files */,
 			);
-			name = QuickLayout;
 			path = QuickLayout;
 			sourceTree = "<group>";
 		};
@@ -377,7 +376,6 @@
 				07B4765DD6A122C260D0A3C071126215 /* BEETextField.swift */,
 				303F81C23BFF4C77B5173E8F24444F32 /* EntryAppearanceDescriptor.swift */,
 			);
-			name = MessagesUtils;
 			path = MessagesUtils;
 			sourceTree = "<group>";
 		};
@@ -397,9 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				3F5FFD8AC895867458CC0436E8E86044 /* BEEActionSheetView.swift */,
-				16B89BA7EF65662A3A425F81E3AD6C84 /* BEEAlertAction.swift */,
-				2B2E52C23BE4EFC03974695F59CE92A6 /* BEEAlertMessageView.swift */,
 				EB0E98684702DB85B00941C8D917E6CA /* BEEAlertView.swift */,
+				16B89BA7EF65662A3A425F81E3AD6C84 /* BEEAlertAction.swift */,
 			);
 			name = Alert;
 			path = BEEPopupKit/Classes/Alert;
@@ -466,7 +463,6 @@
 				6500BA4DDB313823D620B209BF6B5AD1 /* UILabel+ComputeSize.swift */,
 				253E88BF389563BAAD8B73648983B70A /* UIView+Responder.swift */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -484,7 +480,6 @@
 				AC86DA05BC55EAFB08B345B5EF17EE5B /* BEEWrapperView.swift */,
 				5690A3A84CF73D7A679CB5F3F9975969 /* EntryCachingHeuristic.swift */,
 			);
-			name = Infra;
 			path = Infra;
 			sourceTree = "<group>";
 		};
@@ -511,7 +506,6 @@
 				3BB285EF6EA8CB7CAE34FF5262F0B0E1 /* BEEAttributes+Validations.swift */,
 				CB2EF21CDEECB8D49E331BC0FE9BDFDE /* BEEAttributes+WindowLevel.swift */,
 			);
-			name = BEEAttributes;
 			path = BEEAttributes;
 			sourceTree = "<group>";
 		};
@@ -530,13 +524,13 @@
 				F972F5DCDA0F795A70CFFE7F7A7726AD /* TableSection.swift */,
 				CDDAB6A95D21699E698172F2D56A549A /* Support Files */,
 			);
-			name = BEETableKit;
 			path = BEETableKit;
 			sourceTree = "<group>";
 		};
 		A38109D00D7AF941BB33354E924D2FF9 /* MessageViews */ = {
 			isa = PBXGroup;
 			children = (
+				2B2E52C23BE4EFC03974695F59CE92A6 /* BEEAlertMessageView.swift */,
 				E8DE8A3630ED7AA624816B365F96737E /* BEEFormMessageView.swift */,
 				8EA1B4EA4CB7A00BFEEE9AC49549272D /* BEEMessageContentView.swift */,
 				CCFB981ADEB7061CED3C7F27DA694683 /* BEENotificationMessageView.swift */,
@@ -546,7 +540,6 @@
 				2EAF50BA16AD284CAF465BC4B15E689F /* MessagesUtils */,
 				C247BB5D584793971FCCF170C256891F /* Notes */,
 			);
-			name = MessageViews;
 			path = MessageViews;
 			sourceTree = "<group>";
 		};
@@ -562,7 +555,6 @@
 				8D2A030C1FAE2A6B87E514D3167DA253 /* BEESimpleMessage.swift */,
 				74D4CCEB7D10FEC5603D1D913EF2D288 /* BEEAttributes */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -591,7 +583,6 @@
 				9335BCB97ABEC470E7B8B6F217CB26E6 /* BEEProcessingNoteMessageView.swift */,
 				E0C775EB0679671302DDF5F46F2E52DA /* BEEXStatusBarMessageView.swift */,
 			);
-			name = Notes;
 			path = Notes;
 			sourceTree = "<group>";
 		};
@@ -641,7 +632,6 @@
 				655124206F0016FB7DAE76EF110C0ED5 /* UIView+Shadow.swift */,
 				2CF603D2C2C19EF7FB7EBAC8AD695948 /* UIView+Utils.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1274,8 +1264,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

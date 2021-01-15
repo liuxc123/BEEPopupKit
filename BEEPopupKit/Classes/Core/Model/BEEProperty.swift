@@ -71,6 +71,9 @@ public struct BEEProperty {
         /** The text */
         public var text: String
 
+        /** The attribute  text */
+        public var attributedText: NSAttributedString?
+
         /** The label's style */
         public var style: LabelStyle
 
@@ -78,9 +81,11 @@ public struct BEEProperty {
         public var accessibilityIdentifier: String?
 
         public init(text: String,
+                    attributedText: NSAttributedString? = nil,
                     style: LabelStyle,
                     accessibilityIdentifier: String? = nil) {
             self.text = text
+            self.attributedText = attributedText
             self.style = style
             self.accessibilityIdentifier = accessibilityIdentifier
         }
@@ -408,6 +413,17 @@ public struct BEEProperty {
             return backgroundColor.color(for: traitCollection, mode: displayMode)
         }
 
+    }
+
+    /** Custom view descriptor */
+    public class CustomContent {
+
+        /** The view */
+        public var view: UIView
+
+        public init(view: UIView) {
+            self.view = view
+        }
     }
 }
 

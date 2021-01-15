@@ -160,9 +160,9 @@ class BEEEntryView: BEEStyleView {
             var topInset: CGFloat = 0
             var bottomInset: CGFloat = 0
             switch attributes.position {
-            case .top, .topLeft, .topRight:
+            case .top:
                 topInset = -BEEWindowProvider.safeAreaInsets.top
-            default:
+            case .center, .bottom:
                 bottomInset = BEEWindowProvider.safeAreaInsets.bottom
             }
 

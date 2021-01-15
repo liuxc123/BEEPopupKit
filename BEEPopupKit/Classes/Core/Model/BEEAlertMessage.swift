@@ -10,16 +10,17 @@ import UIKit
 
 public struct BEEAlertMessage {
 
-    public enum ImagePosition {
-        case top
-        case left
-    }
+    /** The image view descriptor */
+    public var image: BEEProperty.ImageContent?
 
-    /** The position of the image inside the alert */
-    public let imagePosition: ImagePosition
+    /** The title label descriptor */
+    public let title: BEEProperty.LabelContent
 
-    /** Image, Title, Description */
-    public let simpleMessage: BEESimpleMessage
+    /** The description label descriptor */
+    public let description: BEEProperty.LabelContent
+
+    /** Custom View */
+    public var custom: BEEProperty.CustomContent?
 
     /** Contents of button bar */
     public let buttonBarContent: BEEProperty.ButtonBarContent
@@ -30,15 +31,28 @@ public struct BEEAlertMessage {
     /** Contents of cancel button bar */
     public var cancelButtonBarContent: BEEProperty.ButtonBarContent?
 
-    public init(simpleMessage: BEESimpleMessage,
-                imagePosition: ImagePosition = .top,
+    public var backgroundColor: BEEColor?
+
+    /** Display mode for the label */
+    public var displayMode: BEEAttributes.DisplayMode
+
+    public init(image: BEEProperty.ImageContent? = nil,
+                title: BEEProperty.LabelContent,
+                description: BEEProperty.LabelContent,
+                custom: BEEProperty.CustomContent? = nil,
                 buttonBarContent: BEEProperty.ButtonBarContent,
                 cancelSpaceContent: BEEProperty.SpaceContent? = nil,
-                cancelButtonBarContent: BEEProperty.ButtonBarContent? = nil) {
-        self.simpleMessage = simpleMessage
-        self.imagePosition = imagePosition
+                cancelButtonBarContent: BEEProperty.ButtonBarContent? = nil,
+                backgroundColor: BEEColor? = nil,
+                displayMode: BEEAttributes.DisplayMode = .inferred) {
+        self.image = image
+        self.title = title
+        self.description = description
+        self.custom = custom
         self.buttonBarContent = buttonBarContent
         self.cancelButtonBarContent = cancelButtonBarContent
+        self.backgroundColor = backgroundColor
+        self.displayMode = displayMode
     }
 }
 

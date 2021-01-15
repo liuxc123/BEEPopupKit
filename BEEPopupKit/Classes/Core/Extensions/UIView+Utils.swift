@@ -27,8 +27,11 @@ extension UILabel {
     var content: BEEProperty.LabelContent {
         set {
             text = newValue.text
-            accessibilityIdentifier = newValue.accessibilityIdentifier
             style = newValue.style
+            if let attributeText = newValue.attributedText {
+                attributedText = attributeText
+            }
+            accessibilityIdentifier = newValue.accessibilityIdentifier
         }
         get {
             return BEEProperty.LabelContent(text: text ?? "", style: style)
