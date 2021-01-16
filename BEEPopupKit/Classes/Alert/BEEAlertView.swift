@@ -78,20 +78,17 @@ open class BEEAlertView {
         attributes.roundCorners = .all(radius: config.cornerRadius)
         attributes.border = .value(color: .black, width: 0.3)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5))
-        let safeAreaInsets = BEEWindowProvider.safeAreaInsets
-        let maxHeight = UIScreen.main.bounds.size.height - safeAreaInsets.top - safeAreaInsets.bottom
-        attributes.positionConstraints.maxSize = .init(width: .fill, height: .constant(value: maxHeight))
         attributes.positionConstraints.size = .init(width: .constant(value: config.width), height: .intrinsic)
+        attributes.positionConstraints.maxSize = .init(
+            width: .constant(value: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) ),
+            height: .ratio(value: 0.9)
+        )
         attributes.entranceAnimation = .init(
             scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)),
             fade: .init(from: 0, to: 1, duration: 0.3)
         )
         attributes.exitAnimation = .init(
             fade: .init(from: 1, to: 0, duration: 0.2)
-        )
-        attributes.positionConstraints.maxSize = .init(
-            width: .constant(value: min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) ),
-            height: .intrinsic
         )
         return attributes
     }()
@@ -141,7 +138,7 @@ open class BEEAlertView {
         {
             var textColor: BEEColor!
             switch action.style {
-            case .normal:
+            case .default:
                 textColor = config.actionNormalColor
             case .cancel:
                 textColor = config.actionCancelColor

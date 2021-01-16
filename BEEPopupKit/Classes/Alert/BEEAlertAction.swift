@@ -8,7 +8,7 @@
 import UIKit
 
 public enum BEEActionStyle {
-    case normal
+    case `default`
     case cancel
     case destructive
 }
@@ -33,3 +33,4 @@ public class BEEAlertAction {
         self.completion = handler
     }
 }
+

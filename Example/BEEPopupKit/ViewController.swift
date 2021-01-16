@@ -49,27 +49,33 @@ class ViewController: UIViewController {
     func showAlertView() {
 
         // Global Setting
-        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
-        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
-        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+//        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
+//        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
+//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
 
 
-        let alert = BEEAlertView(title: "title", message: "message", imageName: "info")
+        let alert = BEEAlertView(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", imageName: "info")
 
-        let customView = UIView()
-        customView.backgroundColor = .yellow
-        customView.set(.height, of: 100)
-        alert.customView = customView
+//        let customView = UIView()
+//        customView.backgroundColor = .yellow
+//        customView.set(.height, of: 100)
+//        alert.customView = customView
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        for _ in 0 ... 20 {
+            alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+                print(action.title)
+            }))
+        }
+
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
@@ -79,48 +85,49 @@ class ViewController: UIViewController {
     func showActionSheetView() {
 
         // Global Setting
-        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.lightText)
-        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.lightText)
-        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
-
-        let button = UIButton()
-        button.backgroundColor = .yellow
-        button.set(.height, of: 100)
-        button.setTitle("自定义按钮", for: .normal)
-        button.addTarget(self, action: #selector(clickAction(_:)), for: .touchUpInside)
+//        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.lightText)
+//        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.lightText)
+//        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+//        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+//        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+//        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+//        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+//        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
 
 
-        let alert = BEEActionSheetView(title: "title", message: "message")
-        alert.customView = button
 
-        let attributedTitle = NSMutableAttributedString(string: "确定")
 
-        attributedTitle.setAttributes(
-            [NSAttributedString.Key.foregroundColor : UIColor.blue],
-            range: NSRange(location: 0, length: 2)
-        )
-        alert.attributedTitle = attributedTitle
+        let alert = BEEActionSheetView(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", imageName: "zhiwen")
+
+        //        let button = UIButton()
+        //        button.backgroundColor = .yellow
+        //        button.set(.height, of: 100)
+        //        button.setTitle("自定义按钮", for: .default)
+        //        button.addTarget(self, action: #selector(clickAction(_:)), for: .touchUpInside)
+        //        alert.customView = button
+
+//        let attributedTitle = NSMutableAttributedString(string: "确定")
+//        attributedTitle.setAttributes(
+//            [NSAttributedString.Key.foregroundColor : UIColor.blue],
+//            range: NSRange(location: 0, length: 2)
+//        )
+//        alert.attributedTitle = attributedTitle
         
-        let action = BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        let action = BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         })
         alert.addAction(action: action)
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
-        for _ in 0 ... 20 {
-            alert.addAction(action: BEEAlertAction(title: "确定", style: .normal, handler: { (action) in
+        for _ in 0 ... 15 {
+            alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
                 print(action.title)
             }))
         }
@@ -135,20 +142,43 @@ class ViewController: UIViewController {
 
 
     func showCustomView() {
-        let contentView = UIView()
-        contentView.backgroundColor = .red
-        
-        var attributes = BEEAttributes.centerFloat
-        attributes.displayDuration = .infinity
-        attributes.precedence = .enqueue(priority: .high)
-        attributes.entryInteraction = .absorbTouches
-        attributes.positionConstraints.verticalOffset = 44
-        attributes.positionConstraints.size = .init(width: .constant(value: 300), height: .constant(value: 300))
-        attributes.roundCorners = .all(radius: 10)
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.3, anchorPosition: .top, delay: 0, spring: nil))
 
-        let popup = BEEPopup(to: view)
-        popup.display(view: contentView, using: attributes)
+
+        let alertController = UIAlertController(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", preferredStyle: .actionSheet)
+
+
+        for _ in 0 ... 8 {
+            alertController.addAction(UIAlertAction(title: "sure", style: .default, handler: { (action) in
+
+            }))
+        }
+
+        alertController.addAction(UIAlertAction(title: "sure", style: .default, handler: { (action) in
+
+        }))
+
+        alertController.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: { (action) in
+
+        }))
+
+        self.present(alertController, animated: true, completion: nil)
+        
+//        var attributes = BEEAttributes.centerFloat
+//        attributes.displayDuration = .infinity
+//        attributes.precedence = .enqueue(priority: .high)
+//        attributes.screenBackground = .color(color: BEEColor(UIColor.black.withAlphaComponent(0.4)))
+//        attributes.entryInteraction = .absorbTouches
+//        attributes.positionConstraints.verticalOffset = 44
+//        attributes.positionConstraints.size = .intrinsic
+//        attributes.positionConstraints.maxSize = .init(width: .ratio(value: 1.0), height: .ratio(value: 0.9))
+//        attributes.roundCorners = .all(radius: 10)
+//        attributes.entranceAnimation = .init(translate: .init(duration: 0.3, anchorPosition: .top, delay: 0, spring: nil))
+//
+//        BEEPopupKit.display(entry: alertController, using: attributes)
+
+
+//        let contentView = UIView()
+//        contentView.backgroundColor = .reds
     }
 
     @objc func clickAction(_ sender: UIButton) {

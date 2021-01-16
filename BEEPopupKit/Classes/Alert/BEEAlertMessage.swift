@@ -25,6 +25,9 @@ public struct BEEAlertMessage {
     /** Contents of button bar */
     public let buttonBarContent: BEEProperty.ButtonBarContent
 
+    /** Custom Action View */
+    public var customAction: BEEProperty.CustomContent?
+
     /** Contents of cancel space view */
     public var cancelSpaceContent: BEEProperty.SpaceContent?
 
@@ -41,6 +44,7 @@ public struct BEEAlertMessage {
                 description: BEEProperty.LabelContent,
                 custom: BEEProperty.CustomContent? = nil,
                 buttonBarContent: BEEProperty.ButtonBarContent,
+                customAction: BEEProperty.CustomContent? = nil,
                 cancelSpaceContent: BEEProperty.SpaceContent? = nil,
                 cancelButtonBarContent: BEEProperty.ButtonBarContent? = nil,
                 backgroundColor: BEEColor? = nil,
@@ -50,6 +54,7 @@ public struct BEEAlertMessage {
         self.description = description
         self.custom = custom
         self.buttonBarContent = buttonBarContent
+        self.customAction = customAction
         self.cancelButtonBarContent = cancelButtonBarContent
         self.backgroundColor = backgroundColor
         self.displayMode = displayMode
