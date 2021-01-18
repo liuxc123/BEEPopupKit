@@ -19,7 +19,7 @@ final public class BEEButtonBarView: UIView {
     // MARK: - Properties
 
     private var buttonViews: [BEEButtonView] = []
-    private var separatorViews: [UIView] = []
+    var separatorViews: [UIView] = []
 
     private let buttonBarContent: BEEProperty.ButtonBarContent
     private let spreadAxis: QLAxis

@@ -20,8 +20,8 @@ public class BEEAlertAction {
     public var completion: ((BEEAlertAction) -> Swift.Void)?
 
     public var backgroundColor: BEEColor?
-    public var textColor: BEEColor?
-    public var textFont: UIFont?
+    public var titleColor: BEEColor?
+    public var titleFont: UIFont?
     public var disabled: Bool = false
     public var canAutoHide: Bool = true
 

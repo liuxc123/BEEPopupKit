@@ -20,62 +20,72 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalAlertSetting()
+        globalActionSheetSetting()
 
-        let section1 = TableSection(headerTitle: "自定义视图", footerTitle: nil)
+        var sections = [TableSection]()
+
+        let section1 = TableSection(headerTitle: "Action Sheet", footerTitle: nil)
         section1.headerHeight = 50
         section1.footerHeight = 0
         
-        let row1 = TableRow<DemoListCell>(value: "custom view")
+        let row1 = TableRow<DemoListCell>(value: "actionSheet的默认动画样式(从底部弹出，有取消按钮)")
             .on(.click) { [weak self] (options) in
-                self?.showCustomView()
+                self?.actionSheetTest1()
             }
         section1.append(row: row1)
         
-        let row2 = TableRow<DemoListCell>(value: "alert view")
+        let row2 = TableRow<DemoListCell>(value: "actionSheet的默认动画(从底部弹出,无取消按钮)")
             .on(.click) { [weak self] (options) in
-                self?.showAlertView()
+                self?.actionSheetTest2()
             }
         section1.append(row: row2)
         
-        let row3 = TableRow<DemoListCell>(value: "action sheet view")
+        let row3 = TableRow<DemoListCell>(value: "actionSheet 模拟多分区样式")
             .on(.click) { [weak self] (options) in
-                self?.showActionSheetView()
+                self?.actionSheetTest3()
             }
         section1.append(row: row3)
+
+        sections.append(section1)
+
         
-        tableDirector.append(section: section1)
+        tableDirector.append(sections: sections)
     }
+
+    func globalAlertSetting() {
+        // Global Setting
+        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
+        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
+        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+    }
+
+
 
     func showAlertView() {
 
-        // Global Setting
-//        BEEAlertViewConfig.shared.titleColor = BEEColor(.lightText)
-//        BEEAlertViewConfig.shared.messageColor = BEEColor(.lightText)
-//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
-
-
         let alert = BEEAlertView(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", imageName: "info")
 
-//        let customView = UIView()
-//        customView.backgroundColor = .yellow
-//        customView.set(.height, of: 100)
-//        alert.customView = customView
+        let customView = UIView()
+        customView.backgroundColor = .yellow
+        customView.set(.height, of: 100)
+        alert.customHeaderView = customView
 
         for _ in 0 ... 20 {
-            alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
                 print(action.title)
             }))
         }
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
@@ -84,58 +94,49 @@ class ViewController: UIViewController {
 
     func showActionSheetView() {
 
-        // Global Setting
-//        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.lightText)
-//        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.lightText)
-//        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-//        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-//        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-//        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-//        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-//        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
-
-
-
-
         let alert = BEEActionSheetView(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", imageName: "zhiwen")
 
-        //        let button = UIButton()
-        //        button.backgroundColor = .yellow
-        //        button.set(.height, of: 100)
-        //        button.setTitle("自定义按钮", for: .default)
-        //        button.addTarget(self, action: #selector(clickAction(_:)), for: .touchUpInside)
-        //        alert.customView = button
+        let attributedTitle = NSMutableAttributedString(string: "确定")
+        attributedTitle.setAttributes(
+            [NSAttributedString.Key.foregroundColor : UIColor.blue],
+            range: NSRange(location: 0, length: 2)
+        )
+        alert.attributedTitle = attributedTitle
 
-//        let attributedTitle = NSMutableAttributedString(string: "确定")
-//        attributedTitle.setAttributes(
-//            [NSAttributedString.Key.foregroundColor : UIColor.blue],
-//            range: NSRange(location: 0, length: 2)
-//        )
-//        alert.attributedTitle = attributedTitle
+        let button = UIButton()
+        button.backgroundColor = .yellow
+        button.set(.height, of: 100)
+        button.setTitle("自定义按钮", for: .normal)
+        button.addTarget(self, action: #selector(clickAction(_:)), for: .touchUpInside)
+        alert.customHeaderView = button
+
+        let customView = UIView()
+        customView.backgroundColor = .yellow
+        customView.set(.height, of: 100)
+        alert.customActionSequenceView = customView
         
         let action = BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         })
-        alert.addAction(action: action)
+        alert.addAction(action)
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
-        alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
             print(action.title)
         }))
 
         for _ in 0 ... 15 {
-            alert.addAction(action: BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
                 print(action.title)
             }))
         }
 
-        alert.addAction(action: BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
             print(action.title)
         }))
-
 
         alert.show()
     }

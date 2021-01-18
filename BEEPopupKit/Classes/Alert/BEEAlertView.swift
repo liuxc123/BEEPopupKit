@@ -35,6 +35,7 @@ public struct BEEAlertViewConfig {
     public var buttonTextAlignment: NSTextAlignment = .center
 
     public var imageSize: CGSize = CGSize(width: 50, height: 50)
+    public var horizontalButtonCount = 2
 
     public var displayMode: BEEAttributes.DisplayMode = .inferred
 
@@ -50,7 +51,8 @@ open class BEEAlertView {
     public var message: String!
     public var attributedMessage: NSAttributedString?
     public var imageName: String!
-    public var customView: UIView?
+    public var customHeaderView: UIView?
+    public var customActionSequenceView: UIView?
 
     public var config: BEEAlertViewConfig = BEEAlertViewConfig.shared
 
@@ -60,7 +62,7 @@ open class BEEAlertView {
         self.imageName = imageName
     }
 
-    public func addAction(action: BEEAlertAction) {
+    public func addAction(_ action: BEEAlertAction) {
         self.actions.append(action)
     }
 
@@ -128,9 +130,14 @@ open class BEEAlertView {
             )
         }
 
-        var customContent: BEEProperty.CustomContent?
-        if let customView = self.customView {
-            customContent = BEEProperty.CustomContent(view: customView)
+        var customHeaderContent: BEEProperty.CustomContent?
+        if let customHeaderView = self.customHeaderView {
+            customHeaderContent = BEEProperty.CustomContent(view: customHeaderView)
+        }
+
+        var customActionContent: BEEProperty.CustomContent?
+        if let customActionView = self.customActionSequenceView {
+            customActionContent = BEEProperty.CustomContent(view: customActionView)
         }
 
         var buttonContents = [BEEProperty.ButtonContent]()
@@ -144,6 +151,9 @@ open class BEEAlertView {
                 textColor = config.actionCancelColor
             case .destructive:
                 textColor = config.actionDestructiveColor
+            }
+            if action.disabled {
+                textColor = config.actionDisableColor
             }
 
             let buttonLabel = BEEProperty.LabelContent(
@@ -160,6 +170,7 @@ open class BEEAlertView {
                 label: buttonLabel,
                 backgroundColor: action.backgroundColor ?? .clear,
                 highlightedBackgroundColor: config.actionPressedColor,
+                
                 accessibilityIdentifier: action.title) {
                     if action.disabled { return }
                     if action.canAutoHide { BEEPopupKit.dismiss() }
@@ -170,6 +181,7 @@ open class BEEAlertView {
         let buttonsBarContent = BEEProperty.ButtonBarContent(
             with: buttonContents,
             separatorColor: config.separatorColor,
+            horizontalDistributionThreshold: config.horizontalButtonCount,
             buttonHeight: config.buttonHeight,
             displayMode: config.displayMode
         )
@@ -178,8 +190,9 @@ open class BEEAlertView {
             image: imageContent,
             title: titleContent,
             description: descriptionContent,
-            custom: customContent,
+            custom: customHeaderContent,
             buttonBarContent: buttonsBarContent,
+            customAction: customActionContent,
             backgroundColor: config.backgroundColor,
             displayMode: config.displayMode
         )

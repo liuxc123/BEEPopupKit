@@ -36,6 +36,7 @@ public struct BEEActionSheetViewConfig {
 
     public var spaceHeight: CGFloat = 10
     public var imageSize: CGSize = CGSize(width: 50, height: 50)
+    public var horizontalButtonCount = 1
 
     public var displayMode: BEEAttributes.DisplayMode = .inferred
 
@@ -52,7 +53,8 @@ open class BEEActionSheetView {
     public var message: String!
     public var attributedMessage: NSAttributedString?
     public var imageName: String!
-    public var customView: UIView?
+    public var customHeaderView: UIView?
+    public var customActionSequenceView: UIView?
 
     public var config: BEEActionSheetViewConfig = BEEActionSheetViewConfig.shared
 
@@ -62,7 +64,7 @@ open class BEEActionSheetView {
         self.imageName = imageName
     }
 
-    public func addAction(action: BEEAlertAction) {
+    public func addAction(_ action: BEEAlertAction) {
         self.actions.append(action)
     }
 
@@ -119,9 +121,14 @@ open class BEEActionSheetView {
             )
         }
 
-        var customContent: BEEProperty.CustomContent?
-        if let customView = self.customView {
-            customContent = BEEProperty.CustomContent(view: customView)
+        var customHeaderContent: BEEProperty.CustomContent?
+        if let customHeaderView = self.customHeaderView {
+            customHeaderContent = BEEProperty.CustomContent(view: customHeaderView)
+        }
+
+        var customActionContent: BEEProperty.CustomContent?
+        if let customActionView = self.customActionSequenceView {
+            customActionContent = BEEProperty.CustomContent(view: customActionView)
         }
 
         var buttonContents = [BEEProperty.ButtonContent]()
@@ -139,6 +146,9 @@ open class BEEActionSheetView {
                 textColor = config.actionCancelColor
             case .destructive:
                 textColor = config.actionDestructiveColor
+            }
+            if action.disabled {
+                textColor = config.actionDisableColor
             }
 
             let buttonLabel = BEEProperty.LabelContent(
@@ -164,6 +174,7 @@ open class BEEActionSheetView {
         let buttonsBarContent = BEEProperty.ButtonBarContent(
             with: buttonContents,
             separatorColor: config.separatorColor,
+            horizontalDistributionThreshold: config.horizontalButtonCount,
             buttonHeight: config.buttonHeight,
             displayMode: config.displayMode
         )
@@ -179,12 +190,17 @@ open class BEEActionSheetView {
                 continue
             }
 
+            var textColor: BEEColor! = config.actionCancelColor
+            if action.disabled {
+                textColor = config.actionDisableColor
+            }
+
             let buttonLabel = BEEProperty.LabelContent(
                 text: action.title.isEmpty ? config.defaultTextCancel : action.title,
                 attributedText: action.attributedTitle,
                 style: BEEProperty.LabelStyle(
                     font: config.buttonFont,
-                    color: config.actionCancelColor,
+                    color: textColor,
                     alignment: config.buttonTextAlignment,
                     displayMode: config.displayMode
                 )
@@ -216,8 +232,9 @@ open class BEEActionSheetView {
             image: imageContent,
             title: titleContent,
             description: descriptionContent,
-            custom: customContent,
+            custom: customHeaderContent,
             buttonBarContent: buttonsBarContent,
+            customAction: customActionContent,
             cancelSpaceContent: cancelSpaceContent,
             cancelButtonBarContent: cancelButtonsBarContent,
             backgroundColor: config.backgroundColor,

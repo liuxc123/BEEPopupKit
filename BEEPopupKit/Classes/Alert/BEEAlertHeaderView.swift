@@ -92,11 +92,5 @@ class BEEAlertHeaderView: UIScrollView {
         messageContentView.horizontalMargins = 16
         messageContentView.labelsOffset = 5
     }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let originalSize = contentSize
-        contentSize = CGSize(width: originalSize.width, height: min(originalSize.height, 400))
-    }
-
+    
 }

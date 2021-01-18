@@ -7,36 +7,35 @@
 
 import UIKit
 
-final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
+final public class BEEAlertMessageView: UIView {
 
     // MARK: Props
 
-    var headerView: BEEAlertHeaderView!
-    var headerSeparatorView: UIView!
+    private var headerView: BEEAlertHeaderView!
+    private var headerSeparatorView: UIView!
+    private var headerContentView: UIView!
 
-    var buttonBarView: BEEButtonBarView!
-    var customActionSequenceView: UIView?
-    var buttonStackView: UIStackView!
-    var buttonScrollView: UIScrollView!
+    private var buttonBarView: BEEButtonBarView!
+    private var customActionSequenceView: UIView?
+    private var buttonStackView: UIStackView!
+    private var buttonScrollView: UIScrollView!
 
-    var contentStackView: UIStackView!
+    private var contentStackView: UIStackView!
 
-    let cancelSpaceView = UIView()
-    var cancelButtonBarView: BEEButtonBarView!
-    var cancelStackView: UIStackView!
+    private let cancelSpaceView = UIView()
+    private var cancelButtonBarView: BEEButtonBarView!
+    private var cancelStackView: UIStackView!
+
+    private var headerMaxHeightConstraint: NSLayoutConstraint!
+    private var headerMaxHeight: CGFloat {
+        return (UIScreen.main.bounds.size.height * 0.9) / 2
+    }
 
     private let defaultCancelSpaceContent = BEEProperty.SpaceContent(backgroundColor: BEEColor(UIColor(hex6: 0xCCCCCC)), height: 10)
     private let message: BEEAlertMessage
 
-    // MARK: EntryAppearenceDescriptor
-
-    var bottomCornerRadius: CGFloat = 0 {
-        didSet {
-//            buttonBarView.bottomCornerRadius = bottomCornerRadius
-        }
-    }
-
     // MARK: Setup
+
     public init(with message: BEEAlertMessage) {
         self.message = message
         super.init(frame: UIScreen.main.bounds)
@@ -73,8 +72,12 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     }
 
     private func setupHeaderView(with message: BEEAlertMessage) {
+        headerContentView = UIView()
+        headerContentView.clipsToBounds = true
+        contentStackView.addArrangedSubview(headerContentView)
+
         headerView = BEEAlertHeaderView(with: message)
-        contentStackView.addArrangedSubview(headerView)
+        headerContentView.addSubview(headerView)
     }
 
     private func setupHeaderSeparatorView(with content: BEEProperty.ButtonBarContent) {
@@ -86,7 +89,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     private func setupButtonScrollView() {
         buttonScrollView = UIScrollView()
-        buttonScrollView.bounces = false
         contentStackView.addArrangedSubview(buttonScrollView)
     }
 
@@ -100,6 +102,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     private func setupButtonBarView(with content: BEEProperty.ButtonBarContent) {
         buttonBarView = BEEButtonBarView(with: content)
         buttonBarView.clipsToBounds = true
+        buttonBarView.separatorViews.first?.isHidden = true
         buttonStackView.addArrangedSubview(buttonBarView)
     }
 
@@ -135,8 +138,8 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     func layoutContent(with message: BEEAlertMessage) {
         contentStackView.layoutToSuperview(.top, .left, .right, .width)
 
-//        headerView.set(.height, of: 400, relation: .equal, ratio: 1.0, priority: .required)
-
+        headerView.layoutToSuperview(.top, .left, .right, .bottom)
+        headerMaxHeightConstraint = headerContentView.set(.height, of: headerMaxHeight, relation: .lessThanOrEqual, ratio: 1.0, priority: .defaultHigh)
 
         buttonStackView.layoutToSuperview(.top, .bottom, .left, .right, .width)
         buttonStackView.layoutToSuperview(.height)?.priority = .defaultHigh
@@ -145,18 +148,22 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
         cancelStackView.layout(.top, to: .bottom, of: contentStackView)
         cancelStackView.layoutToSuperview(.bottom, .left, .right)
         cancelSpaceView.set(.height, of: (message.cancelSpaceContent ?? defaultCancelSpaceContent).height)
-        cancelSpaceView.isHidden = message.cancelButtonBarContent == nil
-        cancelButtonBarView.isHidden = message.cancelButtonBarContent == nil
+        cancelSpaceView.isHidden = message.cancelButtonBarContent?.content.isEmpty ?? true
+        cancelButtonBarView.isHidden = message.cancelButtonBarContent?.content.isEmpty ?? true
         cancelButtonBarView.expand()
     }
 
     private func setupInterfaceStyle() {
-        self.headerSeparatorView.backgroundColor = message.buttonBarContent.separatorColor.color(for: traitCollection, mode: message.displayMode)
-        self.backgroundColor = message.backgroundColor?.color(for: traitCollection, mode: message.displayMode)
+        self.headerSeparatorView?.backgroundColor = message.buttonBarContent.separatorColor.color(for: traitCollection, mode: message.displayMode)
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         setupInterfaceStyle()
+    }
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        headerMaxHeightConstraint.constant = headerMaxHeight
     }
 }
 
