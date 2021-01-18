@@ -18,6 +18,7 @@ class DemoListCell: UITableViewCell, ConfigurableCell {
     func configure(with text: String) {
         accessoryType = .disclosureIndicator
         textLabel?.text = text
+        textLabel?.font = UIFont.systemFont(ofSize: 15)
     }
     
 }
