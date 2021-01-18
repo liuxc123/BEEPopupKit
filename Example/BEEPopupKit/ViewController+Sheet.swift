@@ -24,7 +24,7 @@ extension ViewController {
     }
 
     // 示例1:actionSheet的默认动画样式(从底部弹出，有取消按钮)
-    func actionSheetTest1 () {
+    @objc func actionSheetTest1 () {
         let actionSheet = BEEActionSheetView(title: "我是主标题", message: "我是副标题", imageName: "zhiwen")
 
         let action1 = BEEAlertAction(title: "Default", style: .default) { (action) in
@@ -46,7 +46,7 @@ extension ViewController {
     }
 
     // 示例2:actionSheet的默认动画(从底部弹出,无取消按钮)
-    func actionSheetTest2 () {
+    @objc func actionSheetTest2 () {
         let actionSheet = BEEActionSheetView(title: "我是主标题", message: "我是副标题", imageName: "zhiwen")
 
         let action1 = BEEAlertAction(title: "Default", style: .default) { (action) in
@@ -63,7 +63,7 @@ extension ViewController {
     }
 
     // 示例3:actionSheet 模拟多分区样式
-    func actionSheetTest3 () {
+    @objc func actionSheetTest3 () {
         let actionSheet = BEEActionSheetView(title: "我是主标题", message: "我是副标题", imageName: "zhiwen")
 
         let action1 = BEEAlertAction(title: "第1个", style: .default) { (action) in
@@ -101,5 +101,48 @@ extension ViewController {
         actionSheet.addAction(action7)
         actionSheet.show()
     }
+
+    // 示例4:actionSheet 极限情况
+    @objc func actionSheetTest4() {
+
+        let alert = BEEActionSheetView(title: "title", message: "message\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage\nmessage", imageName: "zhiwen")
+
+        let button = UIButton()
+        button.backgroundColor = .yellow
+        button.set(.height, of: 100)
+        button.setTitle("自定义按钮", for: .normal)
+        alert.customHeaderView = button
+
+        let customView = UIView()
+        customView.backgroundColor = .yellow
+        customView.set(.height, of: 100)
+        alert.customActionSequenceView = customView
+
+        let action = BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            print(action.title)
+        })
+        alert.addAction(action)
+
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            print(action.title)
+        }))
+
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            print(action.title)
+        }))
+
+        for _ in 0 ... 15 {
+            alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+                print(action.title)
+            }))
+        }
+
+        alert.addAction(BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
+            print(action.title)
+        }))
+
+        alert.show()
+    }
+
 
 }

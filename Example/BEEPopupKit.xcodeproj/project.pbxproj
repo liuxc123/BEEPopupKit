@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		04ACEF8B25B550A5002DC882 /* ViewController+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACEF8A25B550A5002DC882 /* ViewController+Sheet.swift */; };
+		04ACEF8F25B55831002DC882 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACEF8E25B55831002DC882 /* ViewController+Alert.swift */; };
+		04ACEF9325B55B1F002DC882 /* ViewController+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04ACEF9225B55B1F002DC882 /* ViewController+Custom.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		04ACEF8A25B550A5002DC882 /* ViewController+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Sheet.swift"; sourceTree = "<group>"; };
+		04ACEF8E25B55831002DC882 /* ViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
+		04ACEF9225B55B1F002DC882 /* ViewController+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Custom.swift"; sourceTree = "<group>"; };
 		1264B979450B13E05EACA3A5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4B706E6D7D040EB1689F7402 /* Pods-BEEPopupKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BEEPopupKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BEEPopupKit_Example/Pods-BEEPopupKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		59FD1A100249430B2F4C6C99 /* Pods_BEEPopupKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BEEPopupKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,8 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				04ACEF8A25B550A5002DC882 /* ViewController+Sheet.swift */,
+				04ACEF8E25B55831002DC882 /* ViewController+Alert.swift */,
+				04ACEF9225B55B1F002DC882 /* ViewController+Custom.swift */,
 				F1A0B6D925A87681000B4A23 /* BEEAnimations.swift */,
 				F16472E825ADCBBF0023B153 /* DemoListCell.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -343,6 +349,8 @@
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				04ACEF8B25B550A5002DC882 /* ViewController+Sheet.swift in Sources */,
+				04ACEF9325B55B1F002DC882 /* ViewController+Custom.swift in Sources */,
+				04ACEF8F25B55831002DC882 /* ViewController+Alert.swift in Sources */,
 				F16472E925ADCBBF0023B153 /* DemoListCell.swift in Sources */,
 				F1A0B6DA25A87681000B4A23 /* BEEAnimations.swift in Sources */,
 			);
