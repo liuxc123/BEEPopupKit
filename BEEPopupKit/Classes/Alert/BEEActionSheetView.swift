@@ -166,8 +166,10 @@ open class BEEActionSheetView {
                 backgroundColor: action.backgroundColor ?? .clear,
                 highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
-                    BEEPopupKit.dismiss()
-                    action.completion?(action)
+                    if action.disabled { return }
+                    BEEPopupKit.dismiss(.displayed) {
+                        action.completion?(action)
+                    }
             }
             buttonContents.append(buttonContent)
         }
@@ -211,8 +213,9 @@ open class BEEActionSheetView {
                 highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
                     if action.disabled { return }
-                    if action.canAutoHide { BEEPopupKit.dismiss() }
-                    action.completion?(action)
+                    BEEPopupKit.dismiss(.displayed) {
+                        action.completion?(action)
+                    }
             }
             cancelButtonContents.append(buttonContent)
         }

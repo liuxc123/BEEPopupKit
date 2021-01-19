@@ -173,8 +173,9 @@ open class BEEAlertView {
                 
                 accessibilityIdentifier: action.title) {
                     if action.disabled { return }
-                    if action.canAutoHide { BEEPopupKit.dismiss() }
-                    action.completion?(action)
+                    BEEPopupKit.dismiss(.displayed) {
+                        action.completion?(action)
+                    }
             }
             buttonContents.append(buttonContent)
         }

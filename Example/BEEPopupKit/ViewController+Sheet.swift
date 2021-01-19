@@ -35,13 +35,19 @@ extension ViewController {
             print("点击了Default")
         }
 
-        let action3 = BEEAlertAction(title: "Cancel", style: .cancel) { (action) in
-            print("点击了Default")
+        let action3 = BEEAlertAction(title: "Disabled", style: .default) { (action) in
+            print("点击了Disabled")
+        }
+        action3.disabled = true
+
+        let action4 = BEEAlertAction(title: "Cancel", style: .cancel) { (action) in
+            print("点击了Cancel")
         }
 
         actionSheet.addAction(action1)
         actionSheet.addAction(action3) // 取消按钮一定排在最底部
         actionSheet.addAction(action2)
+        actionSheet.addAction(action4)
         actionSheet.show()
     }
 
