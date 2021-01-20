@@ -84,8 +84,8 @@ class BEEAlertHeaderView: UIScrollView {
         thumbStackView.layoutToSuperview(.centerX)
 
         headerStackView.layout(.top, to: .bottom, of: thumbStackView)
-        headerStackView.layoutToSuperview(.left, offset: 16)
-        headerStackView.layoutToSuperview(.right, offset: -16)
+        headerStackView.layoutToSuperview(.left)
+        headerStackView.layoutToSuperview(.right)
         headerStackView.layoutToSuperview(.bottom)
 
         messageContentView.verticalMargins = 16

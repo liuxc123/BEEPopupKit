@@ -148,6 +148,7 @@ final public class BEEAlertMessageView: UIView {
         cancelStackView.layout(.top, to: .bottom, of: contentStackView)
         cancelStackView.layoutToSuperview(.bottom, .left, .right)
         cancelSpaceView.set(.height, of: (message.cancelSpaceContent ?? defaultCancelSpaceContent).height)
+
         cancelSpaceView.isHidden = message.cancelButtonBarContent?.content.isEmpty ?? true
         cancelButtonBarView.isHidden = message.cancelButtonBarContent?.content.isEmpty ?? true
         cancelButtonBarView.expand()

@@ -27,7 +27,8 @@ class ViewController: UIViewController {
         ]),
         ("Alert", [
             ("alert 默认弹框", #selector(alertTest1)),
-            ("alert 极限情况", #selector(alertTest2))
+            ("alert 极限情况", #selector(alertTest2)),
+            ("alert 带输入框", #selector(alertTest3))
         ]),
         ("Popup", [
             ("自定义Popup", #selector(customTest1))

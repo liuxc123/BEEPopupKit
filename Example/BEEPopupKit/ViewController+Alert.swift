@@ -81,4 +81,27 @@ extension ViewController {
         alert.show()
     }
 
+    // 示例2:alert 输入框 键盘情况
+    @objc func alertTest3() {
+
+        let alert = BEEAlertView(title: "我是主标题", message: "我是副标题", imageName: "zhiwen")
+
+        let textField = UITextField()
+        textField.backgroundColor = .yellow
+        textField.set(.height, of: 50)
+        textField.placeholder = "请输入内容"
+        alert.customHeaderView = textField
+
+        let action = BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+            print(action.title)
+        })
+        alert.addAction(action)
+
+        alert.addAction(BEEAlertAction(title: "取消", style: .cancel, handler: { (action) in
+            print(action.title)
+        }))
+
+        alert.show()
+    }
+
 }
