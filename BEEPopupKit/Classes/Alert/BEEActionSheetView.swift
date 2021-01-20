@@ -167,7 +167,11 @@ open class BEEActionSheetView {
                 highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
                     if action.disabled { return }
-                    BEEPopupKit.dismiss(.displayed) {
+                    if action.canAutoHide {
+                        BEEPopupKit.dismiss(.displayed) {
+                            action.completion?(action)
+                        }
+                    } else {
                         action.completion?(action)
                     }
             }
@@ -213,7 +217,11 @@ open class BEEActionSheetView {
                 highlightedBackgroundColor: config.actionPressedColor,
                 accessibilityIdentifier: action.title) {
                     if action.disabled { return }
-                    BEEPopupKit.dismiss(.displayed) {
+                    if action.canAutoHide {
+                        BEEPopupKit.dismiss(.displayed) {
+                            action.completion?(action)
+                        }
+                    } else {
                         action.completion?(action)
                     }
             }

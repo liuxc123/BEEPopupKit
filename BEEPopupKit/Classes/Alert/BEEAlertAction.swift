@@ -23,11 +23,13 @@ public class BEEAlertAction {
     public var titleColor: BEEColor?
     public var titleFont: UIFont?
     public var disabled: Bool = false
+    public var canAutoHide: Bool = true
 
-    public init(title: String, style: BEEActionStyle, disabled: Bool = false, handler: ((BEEAlertAction) -> Swift.Void)? = nil) {
+    public init(title: String, style: BEEActionStyle, disabled: Bool = false, canAutoHide: Bool = true, handler: ((BEEAlertAction) -> Swift.Void)? = nil) {
         self.title = title
         self.style = style
         self.disabled = disabled
+        self.canAutoHide = canAutoHide
         self.completion = handler
     }
 }

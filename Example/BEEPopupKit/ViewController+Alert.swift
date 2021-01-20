@@ -64,11 +64,7 @@ extension ViewController {
         action.disabled = true
         alert.addAction(action)
 
-        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
-            print(action.title)
-        }))
-
-        alert.addAction(BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定", style: .default, canAutoHide: false, handler: { (action) in
             print(action.title)
         }))
 
