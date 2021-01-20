@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'BEEPopupKit'
   s.version          = '1.0.1'
-  s.summary          = 'A short description of BEEPopupKit.'
+  s.summary          = '一个可自定义的弹框组件'
   s.homepage         = 'https://github.com/liuxc123/BEEPopupKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'liuxc123' => 'lxc_work@126.com' }

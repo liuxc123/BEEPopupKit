@@ -1,5 +1,5 @@
 PODS:
-  - BEEPopupKit (1.0.0):
+  - BEEPopupKit (1.0.1):
     - QuickLayout
   - BEETableKit (1.0.0)
   - QuickLayout (3.0.0)
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BEEPopupKit: 804a66d34e1922b2f4a4575bbcf6165e9b9ecae2
+  BEEPopupKit: 6b61c1c7bd443d1adc7c5e57c4bf02fd6c37cb89
   BEETableKit: bc5127fff06769d0833162973bd6011fc994309c
   QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
 
