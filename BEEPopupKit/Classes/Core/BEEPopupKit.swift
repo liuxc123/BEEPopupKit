@@ -114,7 +114,6 @@ public final class BEEPopupKit {
     public class func display(entry view: UIView, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
             let popup = BEEPopup(to: presentView)
-            presentView.popups.append(popup)
             popup.display(view: view, using: attributes)
         }
     }
@@ -137,7 +136,6 @@ public final class BEEPopupKit {
     public class func display(entry viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
             let popup = BEEPopup(to: presentView)
-            presentView.popups.append(popup)
             popup.display(viewController: viewController, using: attributes)
         }
     }
@@ -195,7 +193,7 @@ public final class BEEPopupKit {
     }
 }
 
-public final class BEEPopup {
+public final class BEEPopup: NSObject {
  
     /** Current entry presentView */
     var provider: BEEViewProvider!
@@ -205,14 +203,34 @@ public final class BEEPopup {
         self.provider = BEEViewProvider(presentView: presentView)
     }
 
+    public var isCurrentlyDisplaying: Bool {
+        return isCurrentlyDisplaying()
+    }
+
+    public func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        return provider.isCurrentlyDisplaying(entryNamed: name)
+    }
+
+    public var isQueueEmpty: Bool {
+        return !queueContains()
+    }
+
+    public func queueContains(entryNamed name: String? = nil) -> Bool {
+        return provider.queueContains(entryNamed: name)
+    }
+
     public func display(view: UIView, using attributes: BEEAttributes) {
-        let entryView = BEEEntryView(newEntry: .init(view: view, attributes: attributes))
-        provider.display(entryView: entryView, using: attributes)
+        DispatchQueue.main.async {
+            let entryView = BEEEntryView(newEntry: .init(view: view, attributes: attributes))
+            self.appendToPresentView()
+            self.provider.display(entryView: entryView, using: attributes)
+        }
     }
     
     public func display(viewController: UIViewController, using attributes: BEEAttributes) {
-        let entryView = BEEEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
         DispatchQueue.main.async {
+            let entryView = BEEEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
+            self.appendToPresentView()
             self.provider.display(entryView: entryView, using: attributes)
         }
     }
@@ -223,15 +241,14 @@ public final class BEEPopup {
         }
     }
 
-}
-
-
-private var bee_popups_key = "bee_popups_key"
-
-extension UIView {
-
-    var popups: [BEEPopup] {
-        set { objc_setAssociatedObject(self, &bee_popups_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
-        get { objc_getAssociatedObject(self, &bee_popups_key) as? [BEEPopup] ?? [] }
+    private func appendToPresentView() {
+        if !self.provider.presentView.popups.contains(where: { [weak self] popup in
+            guard let self = self else { return false }
+            return popup == self
+        }) {
+            provider.presentView.popups.append(self)
+        }
     }
 }
+
+

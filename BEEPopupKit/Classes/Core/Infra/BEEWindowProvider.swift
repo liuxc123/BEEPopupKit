@@ -77,7 +77,8 @@ final class BEEWindowProvider: EntryPresenterDelegate {
     private func setupWindowAndRootVC() -> BEERootViewController {
         let entryVC: BEERootViewController
         if entryWindow == nil {
-            entryVC = BEERootViewController(with: self)
+            let extractedExpr = BEERootViewController(with: self)
+            entryVC = extractedExpr
             entryWindow = BEEWindow(with: entryVC)
             mainRollbackWindow = UIApplication.shared.keyWindow
         } else {

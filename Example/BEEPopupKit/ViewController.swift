@@ -28,7 +28,8 @@ class ViewController: UIViewController {
         ("Alert", [
             ("alert 默认弹框", #selector(alertTest1)),
             ("alert 极限情况", #selector(alertTest2)),
-            ("alert 带输入框", #selector(alertTest3))
+            ("alert 带输入框", #selector(alertTest3)),
+            ("alertController 默认情况", #selector(alertTest4))
         ]),
         ("Popup", [
             ("自定义Popup", #selector(customTest1))
@@ -60,5 +61,6 @@ class ViewController: UIViewController {
         
         tableDirector.append(sections: sections)
     }
+
 }
 

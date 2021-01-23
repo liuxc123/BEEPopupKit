@@ -10,7 +10,7 @@ import UIKit
 final class BEEViewProvider: NSObject, EntryPresenterDelegate {
 
     /** Current entry presentView */
-    private weak var presentView: UIView!
+    public weak var presentView: UIView!
 
     /** Current entry view */
     private var entryView: BEEEntryView!

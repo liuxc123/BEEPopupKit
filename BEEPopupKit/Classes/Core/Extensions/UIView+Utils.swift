@@ -150,3 +150,14 @@ extension UITextField {
         }
     }
 }
+
+
+extension UIView {
+    struct AssociatedKey {
+        static var bee_popups_key: Void?
+    }
+    var popups: [BEEPopup] {
+        set { objc_setAssociatedObject(self, &AssociatedKey.bee_popups_key, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get { objc_getAssociatedObject(self, &AssociatedKey.bee_popups_key) as? [BEEPopup] ?? [] }
+    }
+}

@@ -13,14 +13,14 @@ extension ViewController {
 
     func globalActionSheetSetting() {
         // Global Setting
-        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.systemGray)
-        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.systemGray)
-        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+//        BEEActionSheetViewConfig.shared.titleColor = BEEColor(.systemGray)
+//        BEEActionSheetViewConfig.shared.messageColor = BEEColor(.systemGray)
+//        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+//        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+//        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+//        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+//        BEEActionSheetViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+//        BEEActionSheetViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
     }
 
     // 示例1:actionSheet的默认动画样式(从底部弹出，有取消按钮)

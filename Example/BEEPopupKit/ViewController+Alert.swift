@@ -13,14 +13,14 @@ extension ViewController {
 
     func globalAlertSetting() {
         // Global Setting
-        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
-        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
-        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+//        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
+//        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
+//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
+//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
+//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
+//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
+//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
     }
 
     // 示例1:alert 默认弹框
@@ -101,7 +101,39 @@ extension ViewController {
             print(action.title)
         }))
 
-        alert.show()
+        alert.show(view: view)
     }
 
+
+
+    @objc func alertTest4() {
+
+        let alertvc = UIAlertController(title: "title", message: "message", preferredStyle: .alert)
+        let action = UIAlertAction(title: "title", style: .default, handler: { action in
+            BEEPopupKit.dismiss()
+        })
+        alertvc.addAction(action)
+
+        var attributes = BEEAttributes.centerFloat
+        attributes.displayDuration = .infinity
+        attributes.precedence = .enqueue(priority: .high)
+        attributes.screenBackground = .color(color: BEEColor(UIColor.black.withAlphaComponent(0.4)))
+        attributes.entryInteraction = .absorbTouches
+        attributes.screenInteraction = .dismiss
+        attributes.positionConstraints.size = .init(width: .constant(value: 320), height: .constant(value: 300))
+        attributes.positionConstraints.maxSize = .init(width: .ratio(value: 1.0), height: .ratio(value: 0.9))
+        attributes.roundCorners = .all(radius: 15)
+        attributes.entranceAnimation = BEEAnimations.growIn()
+        attributes.exitAnimation = BEEAnimations.growOut()
+
+        BEEPopupKit.display(entry: alertvc, using: attributes)
+    }
+
+}
+
+class TestViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .yellow
+    }
 }
