@@ -39,7 +39,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     public init(with message: BEEAlertMessage) {
         self.message = message
         super.init(frame: UIScreen.main.bounds)
-        self.clipsToBounds = true
 
         setupContentStackView()
 
@@ -71,7 +70,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     func setupContentStackView() {
         contentStackView = UIStackView()
-        contentStackView.clipsToBounds = true
         contentStackView.axis = .vertical
         contentStackView.alignment = .fill
         contentStackView.distribution = .fill
@@ -80,18 +78,15 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     private func setupHeaderView(with message: BEEAlertMessage) {
         headerContentView = UIView()
-        headerContentView.clipsToBounds = true
         contentStackView.addArrangedSubview(headerContentView)
 
         headerView = BEEAlertHeaderView(with: message)
-        headerView.clipsToBounds = true
         headerContentView.addSubview(headerView)
     }
 
     private func setupHeaderSeparatorView(with content: BEEProperty.ButtonBarContent) {
         headerSeparatorView = UIView()
-        headerSeparatorView.clipsToBounds = true
-        headerSeparatorView.set(.height, of: 1.0/UIScreen.main.scale)
+        headerSeparatorView.set(.height, of: 1.0)
         headerSeparatorView.backgroundColor = content.separatorColor.color(for: traitCollection, mode: content.displayMode)
         contentStackView.addArrangedSubview(headerSeparatorView)
     }
@@ -103,7 +98,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     private func setupButtonStackView() {
         buttonStackView = UIStackView()
-        buttonStackView.clipsToBounds = true
         buttonStackView.axis = .vertical
         buttonScrollView.addSubview(buttonStackView)
     }
@@ -120,7 +114,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
             return
         }
         customActionSequenceView = content.view
-        customActionSequenceView?.clipsToBounds = true
         buttonStackView.addArrangedSubview(customActionSequenceView!)
     }
 
@@ -141,7 +134,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     private func setupCancelButtonBarView(with content: BEEProperty.ButtonBarContent?) {
         let content = content ?? BEEProperty.ButtonBarContent(with: [], separatorColor: .clear)
         cancelButtonBarView = BEEButtonBarView(with: content)
-        cancelButtonBarView.clipsToBounds = true
         cancelStackView.addArrangedSubview(cancelButtonBarView)
     }
 

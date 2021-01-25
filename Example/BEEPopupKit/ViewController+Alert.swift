@@ -14,8 +14,6 @@ extension ViewController {
     func globalAlertSetting() {
         // Global Setting
         BEEAlertViewConfig.shared.cornerRadius = 10
-//        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
-//        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
         BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.blue)
         BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.blue)
         BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.blue)
@@ -32,7 +30,7 @@ extension ViewController {
         }
         // 设置第1个action的颜色
         action1.titleColor = BEEColor(.orange)
-        let action2 = BEEAlertAction(title: "取消", style: .destructive) { (action) in
+        let action2 = BEEAlertAction(title: "取消", style: .cancel) { (action) in
             print("点击了取消")
         }
         action2.titleColor = BEEColor(.red)
@@ -57,13 +55,13 @@ extension ViewController {
         customView.set(.height, of: 100)
         alert.customActionSequenceView = customView
 
-        let action = BEEAlertAction(title: "确定", style: .default, handler: { (action) in
+        let action = BEEAlertAction(title: "确定 disabled=true", style: .default, handler: { (action) in
             print(action.title)
         })
         action.disabled = true
         alert.addAction(action)
 
-        alert.addAction(BEEAlertAction(title: "确定", style: .default, canAutoHide: false, handler: { (action) in
+        alert.addAction(BEEAlertAction(title: "确定 canAutoHide=false", style: .default, canAutoHide: false, handler: { (action) in
             print(action.title)
         }))
 
@@ -103,36 +101,5 @@ extension ViewController {
         alert.show(view: view)
     }
 
-
-
-    @objc func alertTest4() {
-
-        let alertvc = UIAlertController(title: "title", message: "message", preferredStyle: .alert)
-        let action = UIAlertAction(title: "title", style: .default, handler: { action in
-            BEEPopupKit.dismiss()
-        })
-        alertvc.addAction(action)
-
-        var attributes = BEEAttributes.centerFloat
-        attributes.displayDuration = .infinity
-        attributes.precedence = .enqueue(priority: .high)
-        attributes.screenBackground = .color(color: BEEColor(UIColor.black.withAlphaComponent(0.4)))
-        attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .dismiss
-        attributes.positionConstraints.size = .init(width: .constant(value: 320), height: .constant(value: 300))
-        attributes.positionConstraints.maxSize = .init(width: .ratio(value: 1.0), height: .ratio(value: 0.9))
-        attributes.roundCorners = .all(radius: 15)
-        attributes.entranceAnimation = BEEAnimations.growIn()
-        attributes.exitAnimation = BEEAnimations.growOut()
-
-        BEEPopupKit.display(entry: alertvc, using: attributes)
-    }
-
 }
 
-class TestViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .yellow
-    }
-}

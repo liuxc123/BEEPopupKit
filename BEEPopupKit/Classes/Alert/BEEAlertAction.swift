@@ -17,7 +17,7 @@ public class BEEAlertAction {
     public let title: String
     public var attributedTitle: NSAttributedString?
     public var style: BEEActionStyle
-    public var completion: ((BEEAlertAction) -> Swift.Void)?
+    public var handler: ((BEEAlertAction) -> Swift.Void)?
 
     public var backgroundColor: BEEColor?
     public var titleColor: BEEColor?
@@ -30,7 +30,7 @@ public class BEEAlertAction {
         self.style = style
         self.disabled = disabled
         self.canAutoHide = canAutoHide
-        self.completion = handler
+        self.handler = handler
     }
 }
 

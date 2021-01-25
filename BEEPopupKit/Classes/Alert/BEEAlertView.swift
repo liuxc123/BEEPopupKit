@@ -177,15 +177,15 @@ open class BEEAlertView {
                     if action.canAutoHide {
                         if let presentView = view {
                             BEEPopupKit.dismiss(form: presentView, descriptor: .displayed) {
-                                action.completion?(action)
+                                action.handler?(action)
                             }
                         } else {
                             BEEPopupKit.dismiss(.displayed) {
-                                action.completion?(action)
+                                action.handler?(action)
                             }
                         }
                     } else {
-                        action.completion?(action)
+                        action.handler?(action)
                     }
             }
             buttonContents.append(buttonContent)

@@ -53,6 +53,7 @@ open class BEEActionSheetView {
     public var message: String!
     public var attributedMessage: NSAttributedString?
     public var imageName: String!
+    public var imageSize: CGSize?
     public var customHeaderView: UIView?
     public var customActionSequenceView: UIView?
 
@@ -115,7 +116,7 @@ open class BEEActionSheetView {
             imageContent = BEEProperty.ImageContent(
                 imageName: imageName,
                 displayMode: config.displayMode,
-                size: config.imageSize,
+                size: imageSize ?? config.imageSize,
                 contentMode: .scaleAspectFit,
                 accessibilityIdentifier: "image"
             )
@@ -169,10 +170,10 @@ open class BEEActionSheetView {
                     if action.disabled { return }
                     if action.canAutoHide {
                         BEEPopupKit.dismiss(.displayed) {
-                            action.completion?(action)
+                            action.handler?(action)
                         }
                     } else {
-                        action.completion?(action)
+                        action.handler?(action)
                     }
             }
             buttonContents.append(buttonContent)
@@ -220,15 +221,15 @@ open class BEEActionSheetView {
                     if action.canAutoHide {
                         if let presentView = view {
                             BEEPopupKit.dismiss(form: presentView, descriptor: .displayed) {
-                                action.completion?(action)
+                                action.handler?(action)
                             }
                         } else {
                             BEEPopupKit.dismiss(.displayed) {
-                                action.completion?(action)
+                                action.handler?(action)
                             }
                         }
                     } else {
-                        action.completion?(action)
+                        action.handler?(action)
                     }
             }
             cancelButtonContents.append(buttonContent)
