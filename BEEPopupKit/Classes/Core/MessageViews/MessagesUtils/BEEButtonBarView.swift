@@ -109,7 +109,7 @@ final public class BEEButtonBarView: UIView {
     private func setupTopSeperatorView() {
         let topSeparatorView = UIView()
         addSubview(topSeparatorView)
-        topSeparatorView.set(.height, of: 1)
+        topSeparatorView.set(.height, of: 1.0/UIScreen.main.scale)
         topSeparatorView.layoutToSuperview(.left, .right, .top)
         separatorViews.append(topSeparatorView)
     }
@@ -128,7 +128,7 @@ final public class BEEButtonBarView: UIView {
             buttonAttribute = .bottom
         }
         midSepView.layout(sepAttribute, to: buttonAttribute, of: view)
-        midSepView.set(relativeEdge, of: 1)
+        midSepView.set(relativeEdge, of: 1.0/UIScreen.main.scale)
         midSepView.layoutToSuperview(axis: oppositeAxis)
         separatorViews.append(midSepView)
     }

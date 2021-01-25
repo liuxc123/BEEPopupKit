@@ -16,12 +16,10 @@ extension ViewController {
         BEEAlertViewConfig.shared.cornerRadius = 10
 //        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
 //        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
-//        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.systemBlue)
-//        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.systemRed)
-//        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.systemGray)
-//        BEEAlertViewConfig.shared.actionPressedColor = BEEColor(.systemBackground)
-//        BEEAlertViewConfig.shared.backgroundColor = BEEColor(.systemBackground)
+        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.blue)
+        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.blue)
+        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.blue)
+        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.gray)
     }
 
     // 示例1:alert 默认弹框

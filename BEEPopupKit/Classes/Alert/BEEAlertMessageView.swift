@@ -48,8 +48,8 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
         setupButtonScrollView()
         setupButtonStackView()
-        setupButtonBarView(with: message.buttonBarContent)
         setupCustomActionSequenceView(with: message.customAction)
+        setupButtonBarView(with: message.buttonBarContent)
 
         setupCancelStackView()
         setupCancelSpaceView(with: message.cancelSpaceContent)
@@ -91,7 +91,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     private func setupHeaderSeparatorView(with content: BEEProperty.ButtonBarContent) {
         headerSeparatorView = UIView()
         headerSeparatorView.clipsToBounds = true
-        headerSeparatorView.set(.height, of: 1.0)
+        headerSeparatorView.set(.height, of: 1.0/UIScreen.main.scale)
         headerSeparatorView.backgroundColor = content.separatorColor.color(for: traitCollection, mode: content.displayMode)
         contentStackView.addArrangedSubview(headerSeparatorView)
     }
