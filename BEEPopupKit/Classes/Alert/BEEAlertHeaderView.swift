@@ -57,6 +57,7 @@ class BEEAlertHeaderView: UIScrollView {
             return
         }
         thumbImageView = UIImageView()
+        thumbImageView.clipsToBounds = true
         thumbImageView.imageContent = content
         thumbStackView.addArrangedSubview(thumbImageView)
     }
@@ -73,6 +74,7 @@ class BEEAlertHeaderView: UIScrollView {
             return
         }
         customHeaderView = content.view
+        customHeaderView?.clipsToBounds = true
         headerStackView.addArrangedSubview(customHeaderView!)
     }
 

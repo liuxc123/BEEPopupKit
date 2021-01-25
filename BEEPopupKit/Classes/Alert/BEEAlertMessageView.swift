@@ -7,7 +7,7 @@
 
 import UIKit
 
-final public class BEEAlertMessageView: UIView {
+final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     // MARK: Props
 
@@ -39,6 +39,7 @@ final public class BEEAlertMessageView: UIView {
     public init(with message: BEEAlertMessage) {
         self.message = message
         super.init(frame: UIScreen.main.bounds)
+        self.clipsToBounds = true
 
         setupContentStackView()
 
@@ -62,6 +63,12 @@ final public class BEEAlertMessageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var bottomCornerRadius: CGFloat = 0 {
+        didSet {
+            adjustRoundCornersIfNecessary()
+        }
+    }
+
     func setupContentStackView() {
         contentStackView = UIStackView()
         contentStackView.clipsToBounds = true
@@ -77,11 +84,13 @@ final public class BEEAlertMessageView: UIView {
         contentStackView.addArrangedSubview(headerContentView)
 
         headerView = BEEAlertHeaderView(with: message)
+        headerView.clipsToBounds = true
         headerContentView.addSubview(headerView)
     }
 
     private func setupHeaderSeparatorView(with content: BEEProperty.ButtonBarContent) {
         headerSeparatorView = UIView()
+        headerSeparatorView.clipsToBounds = true
         headerSeparatorView.set(.height, of: 1.0)
         headerSeparatorView.backgroundColor = content.separatorColor.color(for: traitCollection, mode: content.displayMode)
         contentStackView.addArrangedSubview(headerSeparatorView)
@@ -111,6 +120,7 @@ final public class BEEAlertMessageView: UIView {
             return
         }
         customActionSequenceView = content.view
+        customActionSequenceView?.clipsToBounds = true
         buttonStackView.addArrangedSubview(customActionSequenceView!)
     }
 
@@ -154,6 +164,14 @@ final public class BEEAlertMessageView: UIView {
         cancelButtonBarView.expand()
     }
 
+    private func adjustRoundCornersIfNecessary() {
+        let size = CGSize(width: bottomCornerRadius, height: bottomCornerRadius)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .bottom, cornerRadii: size)
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        layer.mask = maskLayer
+    }
+
     private func setupInterfaceStyle() {
         self.headerSeparatorView?.backgroundColor = message.buttonBarContent.separatorColor.color(for: traitCollection, mode: message.displayMode)
     }
@@ -165,6 +183,7 @@ final public class BEEAlertMessageView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         headerMaxHeightConstraint.constant = headerMaxHeight
+        adjustRoundCornersIfNecessary()
     }
 }
 

@@ -13,6 +13,7 @@ extension ViewController {
 
     func globalAlertSetting() {
         // Global Setting
+        BEEAlertViewConfig.shared.cornerRadius = 10
 //        BEEAlertViewConfig.shared.titleColor = BEEColor(.systemGray)
 //        BEEAlertViewConfig.shared.messageColor = BEEColor(.systemGray)
 //        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.systemBlue)
