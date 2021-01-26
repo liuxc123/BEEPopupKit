@@ -14,10 +14,7 @@ extension ViewController {
     func globalAlertSetting() {
         // Global Setting
         BEEAlertViewConfig.shared.cornerRadius = 10
-        BEEAlertViewConfig.shared.actionNormalColor = BEEColor(.blue)
-        BEEAlertViewConfig.shared.actionCancelColor = BEEColor(.blue)
-        BEEAlertViewConfig.shared.actionDestructiveColor = BEEColor(.blue)
-        BEEAlertViewConfig.shared.actionDisableColor = BEEColor(.gray)
+        BEEAlertViewConfig.shared.displayMode = .dark
     }
 
     // 示例1:alert 默认弹框

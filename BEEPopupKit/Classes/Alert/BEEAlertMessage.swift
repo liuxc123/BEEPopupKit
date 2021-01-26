@@ -55,6 +55,7 @@ public struct BEEAlertMessage {
         self.custom = custom
         self.buttonBarContent = buttonBarContent
         self.customAction = customAction
+        self.cancelSpaceContent = cancelSpaceContent
         self.cancelButtonBarContent = cancelButtonBarContent
         self.backgroundColor = backgroundColor
         self.displayMode = displayMode

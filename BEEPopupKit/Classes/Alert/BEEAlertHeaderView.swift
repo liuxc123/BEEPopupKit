@@ -41,13 +41,11 @@ class BEEAlertHeaderView: UIScrollView {
         addSubview(contentView)
 
         thumbStackView = UIStackView()
-        thumbStackView.clipsToBounds = true
         thumbStackView.alignment = .center
         thumbStackView.axis = .vertical
         contentView.addSubview(thumbStackView)
 
         headerStackView = UIStackView()
-        headerStackView.clipsToBounds = true
         headerStackView.axis = .vertical
         contentView.addSubview(headerStackView)
     }
@@ -57,7 +55,6 @@ class BEEAlertHeaderView: UIScrollView {
             return
         }
         thumbImageView = UIImageView()
-        thumbImageView.clipsToBounds = true
         thumbImageView.imageContent = content
         thumbStackView.addArrangedSubview(thumbImageView)
     }
@@ -74,7 +71,6 @@ class BEEAlertHeaderView: UIScrollView {
             return
         }
         customHeaderView = content.view
-        customHeaderView?.clipsToBounds = true
         headerStackView.addArrangedSubview(customHeaderView!)
     }
 

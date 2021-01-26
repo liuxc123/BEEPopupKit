@@ -114,7 +114,7 @@ public final class BEEPopupKit {
     public class func display(entry view: UIView, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
             let popup = BEEPopup(to: presentView)
-            popup.display(view: view, using: attributes)
+            popup.display(entry: view, using: attributes)
         }
     }
 
@@ -136,7 +136,7 @@ public final class BEEPopupKit {
     public class func display(entry viewController: UIViewController, using attributes: BEEAttributes, presentView: UIView) {
         DispatchQueue.main.async {
             let popup = BEEPopup(to: presentView)
-            popup.display(viewController: viewController, using: attributes)
+            popup.display(entry: viewController, using: attributes)
         }
     }
 
@@ -219,7 +219,7 @@ public final class BEEPopup: NSObject {
         return provider.queueContains(entryNamed: name)
     }
 
-    public func display(view: UIView, using attributes: BEEAttributes) {
+    public func display(entry view: UIView, using attributes: BEEAttributes) {
         DispatchQueue.main.async {
             let entryView = BEEEntryView(newEntry: .init(view: view, attributes: attributes))
             self.appendToPresentView()
@@ -227,7 +227,7 @@ public final class BEEPopup: NSObject {
         }
     }
     
-    public func display(viewController: UIViewController, using attributes: BEEAttributes) {
+    public func display(entry viewController: UIViewController, using attributes: BEEAttributes) {
         DispatchQueue.main.async {
             let entryView = BEEEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
             self.appendToPresentView()

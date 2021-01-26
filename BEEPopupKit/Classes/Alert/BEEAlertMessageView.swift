@@ -104,7 +104,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     private func setupButtonBarView(with content: BEEProperty.ButtonBarContent) {
         buttonBarView = BEEButtonBarView(with: content)
-        buttonBarView.clipsToBounds = true
         buttonBarView.separatorViews.first?.isHidden = true
         buttonStackView.addArrangedSubview(buttonBarView)
     }
@@ -119,7 +118,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
 
     private func setupCancelStackView() {
         cancelStackView = UIStackView()
-        cancelStackView.clipsToBounds = true
         cancelStackView.axis = .vertical
         addSubview(cancelStackView)
     }
@@ -127,7 +125,6 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     private func setupCancelSpaceView(with content: BEEProperty.SpaceContent?) {
         let content = content ?? defaultCancelSpaceContent
         cancelSpaceView.backgroundColor = content.backgroundColor(for: traitCollection)
-        cancelSpaceView.clipsToBounds = true
         cancelStackView.addArrangedSubview(cancelSpaceView)
     }
 
@@ -165,6 +162,7 @@ final public class BEEAlertMessageView: UIView, EntryAppearanceDescriptor {
     }
 
     private func setupInterfaceStyle() {
+        self.cancelSpaceView.backgroundColor = (message.cancelSpaceContent ?? defaultCancelSpaceContent).backgroundColor.color(for: traitCollection, mode: message.displayMode)
         self.headerSeparatorView?.backgroundColor = message.buttonBarContent.separatorColor.color(for: traitCollection, mode: message.displayMode)
     }
 

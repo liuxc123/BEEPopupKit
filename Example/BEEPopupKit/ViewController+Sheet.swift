@@ -13,11 +13,8 @@ extension ViewController {
 
     func globalActionSheetSetting() {
         // Global Setting
+        BEEActionSheetViewConfig.shared.displayMode = .dark
         BEEActionSheetViewConfig.shared.cornerRadius = 10
-        BEEActionSheetViewConfig.shared.actionNormalColor = BEEColor(.blue)
-        BEEActionSheetViewConfig.shared.actionCancelColor = BEEColor(.blue)
-        BEEActionSheetViewConfig.shared.actionDestructiveColor = BEEColor(.blue)
-        BEEActionSheetViewConfig.shared.actionDisableColor = BEEColor(.gray)
     }
 
     // 示例1:actionSheet的默认动画样式(从底部弹出，有取消按钮)

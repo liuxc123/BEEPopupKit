@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
+    lazy var popup: BEEPopup = BEEPopup(to: self.view)
+
     lazy var tableDirector: TableDirector = {
         return TableDirector(tableView: tableView)
     }()
@@ -32,7 +34,8 @@ class ViewController: UIViewController {
         ]),
         ("Popup", [
             ("自定义Popup View", #selector(customTest1)),
-            ("自定义Popup ViewController", #selector(customTest2))
+            ("自定义Popup ViewController", #selector(customTest2)),
+            ("自定义Popup NavigationController", #selector(customTest3))
         ])
     ]
 

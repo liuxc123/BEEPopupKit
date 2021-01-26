@@ -18,17 +18,17 @@ public struct BEEActionSheetViewConfig {
     public var messageFont: UIFont = .systemFont(ofSize: 14)
     public var buttonFont: UIFont = .systemFont(ofSize: 17)
 
-    public var backgroundColor: BEEColor = BEEColor(UIColor(hex6: 0xFFFFFF))
-    public var titleColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
-    public var messageColor: BEEColor = BEEColor(UIColor(hex6: 0x666666))
-    public var separatorColor: BEEColor = BEEColor(UIColor(hex6: 0xCCCCCC))
-    public var spaceColor: BEEColor = BEEColor(UIColor(hex6: 0xCCCCCC))
+    public var backgroundColor: BEEColor = BEEColor(light: UIColor(hex6: 0xFFFFFF), dark: UIColor(hex6: 0xFFFFFF).darken(by: 0.8))
+    public var titleColor: BEEColor = BEEColor(light: UIColor(hex6: 0x333333), dark: UIColor(hex6: 0x333333).lighten(by: 0.8))
+    public var messageColor: BEEColor = BEEColor(light: UIColor(hex6: 0x666666), dark: UIColor(hex6: 0x666666).lighten(by: 0.8))
+    public var separatorColor: BEEColor = BEEColor(light: UIColor(hex6: 0xF1F2F4), dark: UIColor(hex6: 0xF1F2F4).darken(by: 0.8))
+    public var spaceColor: BEEColor = BEEColor(light: UIColor(hex6: 0xF4F5F6), dark: UIColor(hex6: 0xF4F5F6).darken(by: 0.8))
 
-    public var actionNormalColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
-    public var actionCancelColor: BEEColor = BEEColor(UIColor(hex6: 0x333333))
-    public var actionDestructiveColor: BEEColor = BEEColor(UIColor(hex6: 0xE76153))
-    public var actionDisableColor: BEEColor = BEEColor(UIColor(hex6: 0x999999))
-    public var actionPressedColor: BEEColor = BEEColor(UIColor(hex6: 0xEFEDE7))
+    public var actionNormalColor: BEEColor = BEEColor(light: UIColor(hex6: 0x333333), dark: UIColor(hex6: 0x333333).lighten(by: 0.8))
+    public var actionCancelColor: BEEColor = BEEColor(light: UIColor(hex6: 0x333333), dark: UIColor(hex6: 0x333333).lighten(by: 0.8))
+    public var actionDestructiveColor: BEEColor = BEEColor(light: UIColor(hex6: 0xE76153), dark: UIColor(hex6: 0xE76153).lighten(by: 0.8))
+    public var actionDisableColor: BEEColor = BEEColor(light: UIColor(hex6: 0x999999), dark: UIColor(hex6: 0x999999).lighten(by: 0.8))
+    public var actionPressedColor: BEEColor = BEEColor(light: UIColor(hex6: 0xEFEDE7), dark: UIColor(hex6: 0xEFEDE7).darken(by: 0.8))
 
     public var titleTextAlignment: NSTextAlignment = .center
     public var messageTextAlignment: NSTextAlignment = .center
@@ -38,6 +38,8 @@ public struct BEEActionSheetViewConfig {
     public var imageSize: CGSize = CGSize(width: 50, height: 50)
     public var horizontalButtonCount = 1
 
+    public var name: String? = "ActionSheet"
+    public var precedence: BEEAttributes.Precedence = .override(priority: .normal, dropEnqueuedEntries: false)
     public var displayMode: BEEAttributes.DisplayMode = .inferred
 
     public var defaultTextCancel: String = "取消"
@@ -71,7 +73,11 @@ open class BEEActionSheetView {
 
     public lazy var attributes: BEEAttributes = {
         var attributes: BEEAttributes = .bottomToast
+        attributes.name = config.name
+        attributes.windowLevel = .alerts
         attributes.displayDuration = .infinity
+        attributes.precedence = config.precedence
+        attributes.displayMode = config.displayMode
         attributes.positionConstraints.maxSize = .init(width: .fill, height: .ratio(value: 0.9))
         attributes.positionConstraints.size = .init(width: .fill, height: .intrinsic)
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
@@ -83,7 +89,7 @@ open class BEEActionSheetView {
         attributes.roundCorners = .top(radius: config.cornerRadius)
         attributes.border = .value(color: .black, width: 0.3)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5))
-        attributes.precedence = .enqueue(priority: .high)
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         return attributes
     }()
 
